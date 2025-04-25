@@ -1,0 +1,261 @@
+.catalog__section{
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 5vh;
+}
+h5{
+    font-size: 25px;
+    font-weight: 600;
+    align-items: center;
+    padding-top: 7vh;
+}
+.page__container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+}
+.eight__hungred__span{
+    font-weight: 200;
+    font-size: 18px;
+}
+.catalog__top__btns{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+.drop__filters{
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    background: none;
+    border: 1px #4295E4 solid;
+}
+.sortirovka{
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: none;
+    border: 1px #C4CDD5 solid;
+}
+.form__top__price{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 45px;
+    padding-right: 3vh;
+    padding-top: 3vh;
+    align-items: center;
+}
+.form__top__price label{
+    font-size: 22px;
+    font-weight: 600;
+}
+.form__top__price button{
+    width: 50px;
+    height: 50px;
+    background: none;
+}
+.form__top__price button img{
+    transform: rotate(180deg);
+}
+.catalog__filter{
+    width: 500px;
+    height: 85vh;
+    border: 3px #C4CDD5 solid;
+    margin-top: 40px;
+}
+.catalog__filter legend{
+    font-size: 25px;
+    font-weight: 600;
+    align-items: center;
+    margin-left: 3.2vh;
+    padding-top: 2vh;
+    font-family: 'SF Pro Display';
+}
+.categoryleftbar-inner-sorting {
+    width: 100%;
+    padding: 25px 30px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 30px 0;
+}
+
+.categoryleftbar-inner-sorting-input {
+    display: flex;
+    gap: 0 30px;
+}
+
+.categoryleftbar-inner-sorting-input input {
+    width: 40%;
+    border: 1px solid #DADCDC;
+    padding: 10px;
+    border-radius: 5px;
+    color: #363A45;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.css-13vpke-MuiSlider-root {
+    color: #4295E4 !important;
+}
+.MuiSlider-rail{
+    color: #b8b8b8;
+}
+
+.categoryleftbar-inner-sorting-price h4 {
+    margin-bottom: 15px;
+}
+
+
+.categoryleftbar-inner-sorting-checkbox {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.bottom__first__line{
+    width: 90%;
+    height: 1px;
+    margin: 0 auto;
+    background-color: #EDEDED;
+    margin-top: 10px;
+}
+.second__form{
+    width: 100%;
+    height: fit-content;
+}
+.form__middle__tittle{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 45px;
+    padding-right: 3vh;
+    padding-top: 1vh;
+    align-items: center;
+}
+.second__form label{
+    font-size: 22px;
+    font-weight: 600;
+}
+.second__form button{
+    width: 50px;
+    height: 50px;
+    background: none;
+}
+.second__form__checkbox__contaier{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.checkbox__list{
+    width: 100%;
+    height: fit-content;
+    line-height: 40px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: 'SF Pro Display';
+}
+.checkbox__li{
+    width: 90%;
+    height:  3vh;
+    margin-left: 3vh;
+    align-items: center;
+    text-align: center;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+.checkbox__li span{
+    width: 100%;
+    text-align: center;
+}
+.checkbox__li input[type="checkbox"]:checked + label::before {
+    background-color: #4295E4; 
+    border: none;
+  }
+  .checkbox__li input[type="checkbox"] {
+    display: none; 
+  }
+  .checkbox__li label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 20px; 
+    height: 20px; 
+    border: 2px solid gray; 
+    background-color: white; 
+    background-image: url(./imgs/checkboxcontent.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  .checkbox__li label {
+    position: relative;
+    padding-left: 30px; 
+    cursor: pointer;
+  }
+  .checkbox__list label{
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 100;
+  }
+  .checkbox__list label span{
+    padding-left: 20px;
+    opacity: 0.7;
+  }
+.catalog__items__wrapper{
+    width: 100%;
+    height: fit-content;
+    margin-left: 5vh;
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 0px;
+    justify-content: space-between;
+}
+.catalog__items__container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    background-color: #ffffff;
+    justify-content: space-between;
+}
+.general__list__reviews{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+}
+.stars__list{
+    display: flex;
+}
+.general__list__reviews>.stars__list>.yellow__stars{
+    width: 20px;
+    height: 20px;
+    background-image: url(./imgs/yellowstar.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.general__list__reviews>.stars__list>.white__stars{
+    width: 20px;
+    height: 20px;
+    background-image: url(./imgs/whitestar.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.rw>li{
+    font-size: 15px;
+    font-family: 'SF Pro Display';
+}

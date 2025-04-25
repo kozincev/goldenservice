@@ -1,0 +1,40 @@
+.section__whygs{
+    width: 100%;
+    height: 50vh;
+}
+h2{
+    text-align: center;
+    margin: 0 auto;
+    width: 500px;
+    margin-bottom: 8vh;
+    margin-top: 8vh;
+    font-size: 40px;
+    font-weight: 600;
+}
+.whygs__wrapper{
+    display: flex;
+    gap: 0 3vh;
+    margin: 0 auto;
+    justify-content: center;
+}
+.whygs__block{
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-left: 2px solid #C4CDD5;
+    border-right: 2px solid #C4CDD5;
+}
+.whygs__block img{
+    width: 70px;
+    height: 70px;
+}
+.whygs__text{
+    width: 250px;
+    color: #454F5B;
+    padding-top: 3vh;
+    font-size: 18px;
+}

@@ -1,0 +1,119 @@
+.cataloginfo__section {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 12vh;
+}
+
+.cataloginfo__top__wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+
+.cataloginfo__top__wrapper .cataloginfo__left__content {
+    width: 50%;
+    height: 600px;
+    text-align: left;
+    justify-content: center;
+    align-content: center;
+}
+
+.cataloginfo__top__wrapper .cataloginfo__left__content h6 {
+    font-size: 30px;
+    font-family: 'SF Pro Display';
+    font-weight: 600;
+    padding-bottom: 40px;
+}
+
+.cataloginfo__top__wrapper .cataloginfo__left__content p {
+    font-size: 18px;
+    opacity: 0.7;
+    font-family: 'SF Pro Display';
+    width: 605px;
+    line-height: 35px;
+}
+
+.cataloginfo__top__wrapper .cataloginfo__right__content {
+    width: 50%;
+    height: 600px;
+    background-image: url(./imgs/cataloginfotopimg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.cataloginfo__top__wrapper .cataloginfo__list {
+    width: 100%;
+    height: fit-content;
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+}
+
+.cataloginfo__top__wrapper .cataloginfo__list .checkbox__li label::before {
+    content: '';
+    position: absolute;
+    left: -35px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid gray;
+    background-color: white;
+    background-image: url(../imgs/checkboxcontent.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.cataloginfo__top__wrapper .cataloginfo__list .checkbox__li label {
+    padding: 0px;
+}
+
+.cataloginfo__bottom__wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0 300px;
+
+}
+
+.cataloginfo__bottom__wrapper .cataloginfo__left__content {
+    width: 50%;
+    height: 750px;
+    background-image: url(./imgs/cataloginfobotimg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cataloginfo__bottom__wrapper .cataloginfo__right__content {
+    width: 50%;
+    height: 600px;
+    text-align: left;
+    justify-content: center;
+    align-content: center;
+}
+
+.cataloginfo__bottom__wrapper .cataloginfo__right__content h6 {
+    font-size: 30px;
+    font-family: 'SF Pro Display';
+    font-weight: 600;
+    padding-bottom: 40px;
+}
+
+.cataloginfo__bottom__wrapper .cataloginfo__right__content p {
+    font-size: 18px;
+    opacity: 0.7;
+    font-family: 'SF Pro Display';
+    width: 605px;
+    line-height: 35px;
+}
+.cataloginfo__bottom__wrapper .cataloginfo__right__content p:first-of-type{
+    padding-bottom: 20px;
+}

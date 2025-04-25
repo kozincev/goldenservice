@@ -1,0 +1,51 @@
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+header{
+  font-family: 'SF Pro Display';
+}
+
+html {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  font-family: 'SF Pro Display';
+}
+
+*:focus {
+  outline: none;
+}
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.arrow{
+  cursor: pointer;
+}
