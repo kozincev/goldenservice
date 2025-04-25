@@ -7,6 +7,7 @@ export default function ttt() {
                     <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, tempore alias eveniet laudantium quaerat temporibus quam veniam sit nostrum.</h1>
                     <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, tempore alias eveniet laudantium quaerat temporibus quam veniam sit nostrum.</h1>
                     <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, tempore alias eveniet laudantium quaerat temporibus quam veniam sit nostrum.</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident!</p>
                 </div>
             </section>
         </>
