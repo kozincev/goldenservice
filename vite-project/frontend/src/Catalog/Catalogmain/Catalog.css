@@ -1,38 +1,44 @@
-.catalog__section{
+.catalog__section {
     width: 100%;
     height: fit-content;
     margin-bottom: 5vh;
 }
-h5{
+
+h5 {
     font-size: 25px;
     font-weight: 600;
     align-items: center;
     padding-top: 7vh;
 }
-.page__container{
+
+.page__container {
     width: 100%;
     height: fit-content;
     display: flex;
 }
-.eight__hungred__span{
+
+.eight__hungred__span {
     font-weight: 200;
     font-size: 18px;
 }
-.catalog__top__btns{
+
+.catalog__top__btns {
     width: 100%;
     height: fit-content;
     display: flex;
     justify-content: space-between;
     padding-top: 40px;
 }
-.drop__filters{
+
+.drop__filters {
     width: 400px;
     height: 50px;
     text-align: center;
     background: none;
     border: 1px #4295E4 solid;
 }
-.sortirovka{
+
+.sortirovka {
     width: 200px;
     height: 50px;
     display: flex;
@@ -41,7 +47,8 @@ h5{
     background: none;
     border: 1px #C4CDD5 solid;
 }
-.form__top__price{
+
+.form__top__price {
     width: 100%;
     height: fit-content;
     display: flex;
@@ -51,25 +58,30 @@ h5{
     padding-top: 3vh;
     align-items: center;
 }
-.form__top__price label{
+
+.form__top__price label {
     font-size: 22px;
     font-weight: 600;
 }
-.form__top__price button{
+
+.form__top__price button {
     width: 50px;
     height: 50px;
     background: none;
 }
-.form__top__price button img{
+
+.form__top__price button img {
     transform: rotate(180deg);
 }
-.catalog__filter{
+
+.catalog__filter {
     width: 500px;
     height: 85vh;
     border: 3px #C4CDD5 solid;
     margin-top: 40px;
 }
-.catalog__filter legend{
+
+.catalog__filter legend {
     font-size: 25px;
     font-weight: 600;
     align-items: center;
@@ -77,6 +89,7 @@ h5{
     padding-top: 2vh;
     font-family: 'SF Pro Display';
 }
+
 .categoryleftbar-inner-sorting {
     width: 100%;
     padding: 25px 30px;
@@ -104,7 +117,8 @@ h5{
 .css-13vpke-MuiSlider-root {
     color: #4295E4 !important;
 }
-.MuiSlider-rail{
+
+.MuiSlider-rail {
     color: #b8b8b8;
 }
 
@@ -118,18 +132,21 @@ h5{
     flex-direction: column;
     gap: 15px;
 }
-.bottom__first__line{
+
+.bottom__first__line {
     width: 90%;
     height: 1px;
     margin: 0 auto;
     background-color: #EDEDED;
     margin-top: 10px;
 }
-.second__form{
+
+.second__form {
     width: 100%;
     height: fit-content;
 }
-.form__middle__tittle{
+
+.form__middle__tittle {
     width: 100%;
     height: fit-content;
     display: flex;
@@ -139,23 +156,27 @@ h5{
     padding-top: 1vh;
     align-items: center;
 }
-.second__form label{
+
+.second__form label {
     font-size: 22px;
     font-weight: 600;
 }
-.second__form button{
+
+.second__form button {
     width: 50px;
     height: 50px;
     background: none;
 }
-.second__form__checkbox__contaier{
+
+.second__form__checkbox__contaier {
     width: 100%;
     height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.checkbox__list{
+
+.checkbox__list {
     width: 100%;
     height: fit-content;
     line-height: 40px;
@@ -164,9 +185,10 @@ h5{
     flex-direction: column;
     font-family: 'SF Pro Display';
 }
-.checkbox__li{
+
+.checkbox__li {
     width: 90%;
-    height:  3vh;
+    height: 3vh;
     margin-left: 3vh;
     align-items: center;
     text-align: center;
@@ -174,47 +196,55 @@ h5{
     display: flex;
     align-items: center;
 }
-.checkbox__li span{
+
+.checkbox__li span {
     width: 100%;
     text-align: center;
 }
-.checkbox__li input[type="checkbox"]:checked + label::before {
-    background-color: #4295E4; 
+
+.checkbox__li input[type="checkbox"]:checked+label::before {
+    background-color: #4295E4;
     border: none;
-  }
-  .checkbox__li input[type="checkbox"] {
-    display: none; 
-  }
-  .checkbox__li label::before {
+}
+
+.checkbox__li input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox__li label::before {
     content: '';
     position: absolute;
     left: 0;
     top: 10px;
-    width: 20px; 
-    height: 20px; 
-    border: 2px solid gray; 
-    background-color: white; 
+    width: 20px;
+    height: 20px;
+    border: 2px solid gray;
+    background-color: white;
     background-image: url(./imgs/checkboxcontent.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-  }
-  .checkbox__li label {
+}
+
+.checkbox__li label {
     position: relative;
-    padding-left: 30px; 
+    padding-left: 30px;
     cursor: pointer;
-  }
-  .checkbox__list label{
+}
+
+.checkbox__list label {
     width: 100%;
     text-align: left;
     font-size: 16px;
     font-weight: 100;
-  }
-  .checkbox__list label span{
+}
+
+.checkbox__list label span {
     padding-left: 20px;
     opacity: 0.7;
-  }
-.catalog__items__wrapper{
+}
+
+.catalog__items__wrapper {
     width: 100%;
     height: fit-content;
     margin-left: 5vh;
@@ -224,38 +254,101 @@ h5{
     gap: 40px 0px;
     justify-content: space-between;
 }
-.catalog__items__container{
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    background-color: #ffffff;
-    justify-content: space-between;
-}
-.general__list__reviews{
+
+.general__list__reviews {
     width: 100%;
     height: fit-content;
     display: flex;
     align-items: center;
     gap: 0 20px;
+    margin-top: auto;
 }
-.stars__list{
+
+.stars__list {
     display: flex;
 }
-.general__list__reviews>.stars__list>.yellow__stars{
+.btm__card__wrapper{
+    margin-top: auto;
+    line-height: 40px;
+}
+
+.general__list__reviews>.stars__list>.yellow__stars {
     width: 20px;
     height: 20px;
     background-image: url(./imgs/yellowstar.png);
     background-repeat: no-repeat;
     background-position: center;
 }
-.general__list__reviews>.stars__list>.white__stars{
+
+.general__list__reviews>.stars__list>.white__stars {
     width: 20px;
     height: 20px;
     background-image: url(./imgs/whitestar.png);
     background-repeat: no-repeat;
     background-position: center;
 }
-.rw>li{
+
+.rw>li {
     font-size: 15px;
     font-family: 'SF Pro Display';
+}
+
+
+.catalog__items__container {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.pp__card1,
+.pp__card2,
+.pp__card3,
+.pp__card4 {
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 620px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 0;
+    margin: 0 auto;
+}
+
+.pagination button {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+    width: 100px;
+    height: 50px;
+}
+.rw>li{
+    opacity: 0.7;
+}
+.pagination button:hover:not(:disabled) {
+    background: #007bff;
+}
+.pagination button.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.card-link-wrapper {
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }

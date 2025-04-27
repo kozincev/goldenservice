@@ -1,0 +1,235 @@
+.goldenlock__section {
+    width: 100%;
+    height: fit-content;
+}
+.selectedproduct-inner {
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    height: 85vh;
+}
+.produc-photo-characteristics {
+    width: 100%;
+}
+
+.card-product-slider {
+    width: 100%;
+    height: 72vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #DADCDC;
+    position: relative;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+
+.card-product-slider-btnproductslider:first-child{
+    cursor: pointer;
+    transform: rotate(180deg);
+}
+.card-product-slider-btnproductslider:last-child{
+    cursor: pointer;
+    transform: rotate(0deg);
+}
+.card-product-slider-iphonemain {
+    width: 70%;
+    max-height: 700px;
+}
+
+.card-product-slider-choice {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-product-slider-choice li {
+    background: #FFFFFF;
+    border: 1px solid #DADCDC;
+    border-radius: 5px;
+    width: 15%;
+    margin-bottom: 32px;
+}
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    width: 50%;
+    position: relative;
+    background: white;
+    padding: 54px 45px;
+    border-radius: 10px;
+
+}
+
+.close-popup {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+}
+
+.card-product-slider-popup {
+    border: none;
+}
+.card-product-slider-choice li>img {
+    width: 100%;
+    padding: 2px;
+}
+.goldenlock__wrapper{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    margin-top: 60px;
+    gap: 0 40px;
+}
+.goldenlock__right__cont{
+    width: 50%;
+    height: 100vh;
+    background-color: rgb(255, 255, 255); 
+    font-family: 'SF Pro Display';
+}
+.grc__head__list{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    margin-top: 30px;
+    gap: 0 20px;
+}
+.rw__count{
+    color: #4295E4;
+}
+.grc__stars__list>.yellow__star li{
+    width: 30px;
+    height: 30px;
+}
+.grc__stars__list>.white__star li{
+    width: 30px;
+    height: 30px;
+}
+.grc__stars__list{
+    display: flex;
+    gap: 0 5px;
+}
+.goldenlock__right__cont>h3{
+    width: 100%;
+    height: fit-content;
+    padding-top: 10px;
+    padding: 20px 0;
+}
+.product__checkboxes{
+    width: 100%;
+    height: fit-content;
+    margin-left: -35px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.product__checkboxes__list{
+    display: flex;
+    width: 70%;
+}
+.product__checkboxes>.product__checkboxes__list>.checkbox__li label::before{
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid gray;
+    background-color: white;
+    background-image: url(../../Catalogmain/imgs/checkboxcontent.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.goldenlock__right__cont span{
+    font-size: 20px;
+    font-weight: 600;
+}
+.product__equipment{
+    width: 50%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px 0;
+}
+.product__equipment button{
+    width:  450px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+    text-align: left;
+    background: none;
+    border: 1px #DADCDC solid;
+}
+.product__eqp__price__color{
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.product__color>ul{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    gap: 0 20px;
+}
+.product__color{
+    width: 30%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 0px;
+}
+.product__color>ul>li img{
+    width: 50px;
+    height: 50px;
+}
+.goldenlock__right__cont>.price__container{
+    margin-top: 30px;
+}
+.buy__container{
+    width: 72%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.buy__container>button{
+    width: 300px;
+    height: 50px;
+    background-color: #4295E4;
+    color: white;
+    text-align: center;
+}
+.favourites__container{
+    display: flex;
+    gap: 0 10px;
+    align-items: center;
+}
+.product__other__container{
+    width: 100%;
+    height: 40vh;
+    background-color: #4295E4;
+    margin-top: 40px;
+}

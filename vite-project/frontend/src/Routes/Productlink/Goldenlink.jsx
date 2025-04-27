@@ -1,21 +1,20 @@
 import NavComponent from "../../General/NavComponent/NavComponent"
-import Catalog from "../../Catalog/Catalogmain/Catalog"
+import Goldenlock from "../../Catalog/Products/Goldenlock/Goldenlock"
 import Catalogswiper from "../../Catalog/Catalogswiper/Catalogswiper"
 import Cataloginfo from "../../Catalog/Cataloginfo/Cataloginfo"
 import Wcyb from "../../General/Wcyb/Wcyb"
 import Footer from "../../General/Footer/Footer"
 
 
-
-export default function Cataloglink() {
-    return (
+export default function Goldenlink(){
+    return(
         <>
-            <NavComponent />
-            <Catalog />
-            <Catalogswiper/>
-            <Cataloginfo/>
-            <Wcyb />
-            <Footer />
+        <NavComponent/>
+        <Goldenlock/>
+        <Catalogswiper/>
+        <Cataloginfo/>
+        <Wcyb/>
+        <Footer/>
         </>
     )
 }

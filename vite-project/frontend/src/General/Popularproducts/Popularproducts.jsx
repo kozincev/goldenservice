@@ -4,6 +4,7 @@ import Swiper2 from "../../component/swiper2/swiper2"
 
 
 
+
 export default function Popularproducts() {
     return (
         <>

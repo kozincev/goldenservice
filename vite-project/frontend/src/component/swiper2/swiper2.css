@@ -28,7 +28,7 @@
 
 .pp__card1 {
     width: 400px;
-    height: 600px;
+    height: 640px;
     background-image: url(../../General/Popularproducts/imgs/card1.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -41,7 +41,7 @@
 
 .pp__card2 {
     width: 400px;
-    height: 600px;
+    height: 640px;
     background-image: url(../../General/Popularproducts/imgs/card2.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -54,7 +54,7 @@
 
 .pp__card3 {
     width: 400px;
-    height: 600px;
+    height: 640px;
     background-image: url(../../General/Popularproducts/imgs/card3.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -67,7 +67,7 @@
 
 .pp__card4 {
     width: 400px;
-    height: 600px;
+    height: 640px;
     background-image: url(../../General/Popularproducts/imgs/card4.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -124,24 +124,10 @@
     width: 12px;
     height: 12px;
 }
-
-.bottom__card__wrapper {
-    border: 1px #C4CDD5 solid;
-    border-top: none;
-    width: 99.9%;
-    height: fit-content;
-    margin-top: 30.8vh;
-    padding-top: 2vh;
-    padding-bottom: 1vh;
-    line-height: 50px;
-    padding: 0px 10px;
-}
-
 .card__info {
     display: flex;
     margin-top: auto;
     font-family: 'SF PRO DISPLAY';
     color: #454F5B;
-    padding-bottom: 10px;
     font-size: 20px;
 }
