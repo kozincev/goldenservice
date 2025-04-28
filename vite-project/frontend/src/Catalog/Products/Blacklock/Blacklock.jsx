@@ -1,12 +1,12 @@
-import "../../../main.css";
-import "./Goldenlock.css";
+import "../../../main.css"
+import "../Goldenlock/Goldenlock.css"
 import React, { useState, useEffect } from 'react';
 import btnproductslider from "./imgs/btnproductslider.png";
 import sliderimg1 from "./imgs/sliderimg1.png";
-import sliderimg2 from "./imgs/sliderimg2.png";
-import sliderimg3 from "./imgs/sliderimg3.png";
-import sliderimg4 from "./imgs/sliderimg4.png";
-import sliderimg5 from "./imgs/sliderimg5.png";
+// import sliderimg2 from "./imgs/sliderimg2.png";
+// import sliderimg3 from "./imgs/sliderimg3.png";
+// import sliderimg4 from "./imgs/sliderimg4.png";
+// import sliderimg5 from "./imgs/sliderimg5.png";
 import like from "./imgs/like.png";
 import popupclose from './imgs/popupclose.png';
 import yellowstar from './imgs/yellowstar.png';
@@ -23,8 +23,7 @@ import rlcwhitestar from "./imgs/rlcwhitestar.png"
 
 
 
-
-export default function Goldenlock() {
+export default function Blacklock() {
     const images = [sliderimg1, sliderimg1, sliderimg1, sliderimg1, sliderimg1];
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +62,7 @@ export default function Goldenlock() {
     return (
         <section className="goldenlock__section">
             <div className="container">
-                <p className="text__navigation">Главная / Каталог /<span>Дверной Замок Golden Soft Gold для офиса</span></p>
+                <p className="text__navigation">Главная / Каталог /<span>Дверной Замок Golden Soft Black для отеля</span></p>
                 <div className="goldenlock__wrapper">
                     {data.length > 0 ? data.map((iphone) => (
                         <div className="selectedproduct-inner" key={iphone.id}>
@@ -120,7 +119,7 @@ export default function Goldenlock() {
                                 <li className="rw__count">(12) отзывов</li>
                             </ul>
                         </ul>
-                        <h3>Дверной Замок Golden Soft для офиса</h3>
+                        <h3>Дверной Замок Golden Soft для отеля</h3>
                         <span>Подходит для установки на:</span>
                         <div className="product__checkboxes">
                             <ul className="product__checkboxes__list">
@@ -149,8 +148,8 @@ export default function Goldenlock() {
                             </div>
                         </div>
                         <div className="price__container">
-                            <p className="thirty__three">33 000₽</p>
-                            <p className="thirty__seven">37 000₽</p>
+                            <p className="thirty__three">23 000₽</p>
+                            <p className="thirty__seven">30 000₽</p>
                         </div>
                         <div className="buy__container">
                             <button>Купить</button>
@@ -413,7 +412,7 @@ export default function Goldenlock() {
                                         <input type="text" name="" id="" placeholder="Введите Ваш email" />
                                     </label>
                                     <label htmlFor="">Ваш комментарий
-                                       <textarea name="" id="" placeholder="Введите Ваш комментарий"></textarea>
+                                        <textarea name="" id="" placeholder="Введите Ваш комментарий"></textarea>
                                     </label>
                                     <button>Оставить отзыв</button>
                                 </form>

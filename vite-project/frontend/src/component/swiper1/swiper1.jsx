@@ -7,6 +7,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import headerimg1 from "../../General/Header/imgs/headerimg1.png"
+// import headerimg2 from "../../General/Header/imgs/headerimg2.png"
+// import headerimg3 from "../../General/Header/imgs/headerimg3.png"
 
 
 export default function Swiper1(){

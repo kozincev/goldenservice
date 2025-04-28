@@ -17,7 +17,7 @@ export default function Swiper2() {
             <Swiper navigation={true} modules={[Navigation]} className="mySwiperr">
                 <SwiperSlide>
                     <div className="pp__card__wrapper">
-                        <Link to="/Золотой замок">
+                        <Link to="/Розовый Замок">
                             <div className="pp__card1">
                                 <p className="sale">SALE</p>
                                 <div className="card__top">
@@ -37,7 +37,7 @@ export default function Swiper2() {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="/Золотой замок">
+                        <Link to="/Жёлтый замок">
                             <div className="pp__card2">
                                 <p className="sale">SALE</p>
                                 <div className="card__top">
@@ -77,7 +77,7 @@ export default function Swiper2() {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="/Золотой замок">
+                        <Link to="/Чёрный замок">
                             <div className="pp__card4">
                                 <p className="sale">SALE</p>
                                 <div className="card__top">
@@ -102,7 +102,7 @@ export default function Swiper2() {
 
                 <SwiperSlide>
                     <div className="pp__card__wrapper">
-                        <Link to="/Золотой замок">
+                        <Link to="/Розовый Замок">
                             <div className="pp__card1">
                                 <p className="sale">SALE</p>
                                 <div className="card__top">
@@ -122,7 +122,7 @@ export default function Swiper2() {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="/Золотой замок">
+                        <Link to="/Жёлтый замок">
                             <div className="pp__card2">
                                 <p className="sale">SALE</p>
                                 <div className="card__top">
@@ -162,7 +162,7 @@ export default function Swiper2() {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="/Золотой замок">
+                        <Link to="/Чёрный замок">
                             <div className="pp__card4">
                                 <p className="sale">SALE</p>
                                 <div className="card__top">

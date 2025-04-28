@@ -258,12 +258,13 @@
 
 .product__other__container {
     width: 100%;
-    ;
+    height: fit-content;
+    margin-top: 20px;
 }
 
 .product__other__block__one {
     width: 100%;
-    height: 7vh;
+    height: 6vh;
     align-items: center;
     justify-content: space-between;
     background-color: white;
@@ -303,7 +304,7 @@
 
 .product__other__block__two {
     width: 100%;
-    height: 7vh;
+    height: 6vh;
     align-items: center;
     justify-content: space-between;
     background-color: white;
@@ -343,7 +344,7 @@
 
 .product__other__block__three {
     width: 100%;
-    height: 7vh;
+    height: 6vh;
     align-items: center;
     justify-content: space-between;
     background-color: white;
@@ -383,7 +384,8 @@
 
 .goldenlock__bottom__wrapper {
     width: 100%;
-    height: 85vh;
+    height: fit-content;
+    margin-bottom: 3vh;
 }
 
 .tittles__description__product {
@@ -531,16 +533,20 @@
     width: 100%;
     height: fit-content;
     font-family: 'SF Pro Display';
+    display: flex;
+    justify-content: space-around;
 }
 
 .reviews__wrapper {
-    width: 100%;
+    width: 75%;
     height: fit-content;
     display: flex;
+    flex-direction: column;
+    gap: 20px 0;
 }
 
 .reviews__first__content {
-    width: 700px;
+    width: 1000px;
     height: 200px;
     border: 1px #C4CDD5 solid;
 }
@@ -590,7 +596,7 @@
     width: 100%;
     height: fit-content;
     display: flex;
-    gap: 0 20px;
+    gap: 0 50px;
     padding: 10px;
 }
 
@@ -604,4 +610,76 @@
     display: flex;
     align-items: center;
     gap: 0 10px;
+}
+.see__more{
+    width: 86%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 10px;
+    cursor: pointer;
+}
+.see__more span{
+    opacity: 0.7;
+}
+.reviews__last__content {
+    width: 50%;
+    height: fit-content;
+}
+
+.rlc__form {
+    width: 500px;
+    height: 600px;
+    padding: 10px;
+    border: 1px #C4CDD5 solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.rlc__form label {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.rlc__form input,
+.rlc__form textarea {
+    width: 80%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.rlc__form textarea {
+    height: 200px;
+    resize: vertical;
+}
+
+.rlc__form>.rlc__form__stars__list{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 0 10px;
+    align-items: center;
+}
+
+.rlc__form ul{
+    display: flex;
+    gap: 0 10px;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.rlc__form>.rlc__form__stars__list>li{
+    width: 30px;
+    height: 30px;
+}
+.rlc__form>button{
+    width: 476px;
+    height: 50px;
+    align-self: center;
+    background-color: #4295E4;
+    color: white;
+    margin-top: 20px;
+    cursor: pointer;
 }

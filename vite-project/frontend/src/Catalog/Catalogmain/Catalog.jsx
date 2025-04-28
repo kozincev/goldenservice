@@ -36,8 +36,8 @@ export default function Catalog() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 9;
 
-    const allItems = Array.from({ length: 37 }, (_, index) => ({
-        id: index + 1,  // Добавляем уникальный ID
+    const allItems = Array.from({ length: 30 }, (_, index) => ({
+        id: index + 1,  
         sale: true,
         inStock: true,
         hasGift: true,
@@ -157,8 +157,8 @@ export default function Catalog() {
                             <div className="catalog__items__container">
                                 {currentItems.map((item, index) => (
                                     <Link
-                                        to={`/Золотой Замок/${item.id}`}
-                                        key={item.id}  // Используем ID вместо индекса
+                                        to={`/Замок/${item.id}`}
+                                        key={item.id}  
                                         className="card-link-wrapper"
                                     >
                                         <div className={`pp__card${(index % 4) + 1}`}>
