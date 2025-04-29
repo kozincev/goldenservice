@@ -36,7 +36,7 @@ export default function Catalog() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 9;
 
-    const allItems = Array.from({ length: 30 }, (_, index) => ({
+    const allItems = Array.from({ length: 14 }, (_, index) => ({
         id: index + 1,  
         sale: true,
         inStock: true,
@@ -157,7 +157,7 @@ export default function Catalog() {
                             <div className="catalog__items__container">
                                 {currentItems.map((item, index) => (
                                     <Link
-                                        to={`/Замок/${item.id}`}
+                                        to={`/Lock/${item.id}`}
                                         key={item.id}  
                                         className="card-link-wrapper"
                                     >

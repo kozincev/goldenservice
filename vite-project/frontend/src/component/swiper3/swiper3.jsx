@@ -1,5 +1,6 @@
 import "../../main.css"
 import "../swiper2/swiper2.css"
+import "./swiper3.css"
 import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -12,179 +13,137 @@ import { Link } from "react-router-dom";
 
 
 export default function Swiper3() {
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 9;
+
+    const allItems = Array.from({ length: 4 }, (_, index) => ({
+        id: index + 1,
+        sale: true,
+        inStock: true,
+        hasGift: true,
+        rating: 3,
+        reviews: 12,
+        title: "Дверной Замок Golden Soft для отеля",
+        price: 33000,
+        oldPrice: 37000,
+    }));
+
+    const totalPages = Math.ceil(allItems.length / itemsPerPage);
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = allItems.slice(indexOfFirstItem, indexOfLastItem);
+
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
     return (
         <>
-            <Swiper navigation={true} modules={[Navigation]} className="mySwiperr">
+            <Swiper navigation={true} modules={[Navigation]} className="mySwiper3">
                 <SwiperSlide>
-                    <div className="pp__card__wrapper">
-                        <Link to="/Розовый Замок">
-                            <div className="pp__card1">
-                                <p className="sale">SALE</p>
-                                <div className="card__top">
-                                    <div className="card__top__first">
-                                        <img src={cm} alt="" />
-                                        <p>В наличии</p>
+
+                    <div className="catalog__items__wrapper">
+                        <div className="catalog__items__container" >
+                            {currentItems.map((item, index) => (
+                                <Link
+                                    to={`/Lock/${item.id}`}
+                                    key={item.id}
+                                    className="card-link-wrapper"
+                                >
+                                    <div className={`pp__card${(index % 4) + 1}`}>
+                                        {item.sale && <p className="sale">SALE</p>}
+                                        <div className="card__top">
+                                            <div className="card__top__first">
+                                                <img src={cm} alt="В наличии" />
+                                                <p>В наличии</p>
+                                            </div>
+                                            {item.hasGift && (
+                                                <div className="card__top__second">
+                                                    <img src={gift} alt="Подарок" />
+                                                    <p>Подарок</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="btm__card__wrapper">
+                                            <ul className="general__list__reviews">
+                                                <ul className="stars__list">
+                                                    {[...Array(5)].map((_, starIndex) => (
+                                                        <li
+                                                            key={starIndex}
+                                                            className={starIndex < item.rating ? 'yellow__stars' : 'white__stars'}
+                                                        ></li>
+                                                    ))}
+                                                </ul>
+                                                <ul className="rw">
+                                                    <li>({item.reviews}) отзывов</li>
+                                                </ul>
+                                            </ul>
+                                            <p className="card__info">{item.title}</p>
+                                        </div>
+                                        <div className="price__container">
+                                            <p className="thirty__three">{item.price.toLocaleString()}₽</p>
+                                            <p className="thirty__seven">{item.oldPrice.toLocaleString()}₽</p>
+                                        </div>
                                     </div>
-                                    <div className="card__top__second">
-                                        <img src={gift} alt="" />
-                                        <p>Подарок</p>
-                                    </div>
-                                </div>
-                                <p className="card__info">Дверной Замок Golden Soft для отеля</p>
-                                <div className="price__container">
-                                    <p className="thirty__three">33 000₽</p>
-                                    <p className="thirty__seven">37 000₽</p>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link to="/Жёлтый замок">
-                            <div className="pp__card2">
-                                <p className="sale">SALE</p>
-                                <div className="card__top">
-                                    <div className="card__top__first">
-                                        <img src={cross} alt="" />
-                                        <p>Нет в наличии</p>
-                                    </div>
-                                    <div className="card__top__second">
-                                        <img src={gift} alt="" />
-                                        <p>Подарок</p>
-                                    </div>
-                                </div>
-                                <p className="card__info">Вариативный замок Golden Soft для отеля</p>
-                                <div className="price__container">
-                                    <p className="thirty__three">7 000₽</p>
-                                    <p className="thirty__seven">8 000₽</p>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link to="/Золотой замок">
-                            <div className="pp__card3">
-                                <p className="sale">SALE</p>
-                                <div className="card__top">
-                                    <div className="card__top__first">
-                                        <img src={cm} alt="" />
-                                        <p>В наличии</p>
-                                    </div>
-                                    <div className="card__top__second">
-                                        <img src={gift} alt="" />
-                                        <p>Подарок</p>
-                                    </div>
-                                </div>
-                                <p className="card__info">Дверной Замок Golden Soft для офиса</p>
-                                <div className="price__container">
-                                    <p className="thirty__three">33 000₽</p>
-                                    <p className="thirty__seven">39 000₽</p>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link to="/Чёрный замок">
-                            <div className="pp__card4">
-                                <p className="sale">SALE</p>
-                                <div className="card__top">
-                                    <div className="card__top__first">
-                                        <img src={cm} alt="" />
-                                        <p>В наличии</p>
-                                    </div>
-                                    <div className="card__top__second">
-                                        <img src={gift} alt="" />
-                                        <p>Подарок</p>
-                                    </div>
-                                </div>
-                                <p className="card__info">Дверной Замок Golden Soft для офиса</p>
-                                <div className="price__container">
-                                    <p className="thirty__three">9 000₽</p>
-                                    <p className="thirty__seven">12 000₽</p>
-                                </div>
-                            </div>
-                        </Link>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </SwiperSlide>
 
                 <SwiperSlide>
-                    <div className="pp__card__wrapper">
-                        <Link to="/Розовый Замок">
-                            <div className="pp__card1">
-                                <p className="sale">SALE</p>
-                                <div className="card__top">
-                                    <div className="card__top__first">
-                                        <img src={cm} alt="" />
-                                        <p>В наличии</p>
+
+                    <div className="catalog__items__wrapper">
+                        <div className="catalog__items__container">
+                            {currentItems.map((item, index) => (
+                                <Link
+                                    to={`/Lock/${item.id}`}
+                                    key={item.id}
+                                    className="card-link-wrapper"
+                                >
+                                    <div className={`pp__card${(index % 4) + 1}`}>
+                                        {item.sale && <p className="sale">SALE</p>}
+                                        <div className="card__top">
+                                            <div className="card__top__first">
+                                                <img src={cm} alt="В наличии" />
+                                                <p>В наличии</p>
+                                            </div>
+                                            {item.hasGift && (
+                                                <div className="card__top__second">
+                                                    <img src={gift} alt="Подарок" />
+                                                    <p>Подарок</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="btm__card__wrapper">
+                                            <ul className="general__list__reviews">
+                                                <ul className="stars__list">
+                                                    {[...Array(5)].map((_, starIndex) => (
+                                                        <li
+                                                            key={starIndex}
+                                                            className={starIndex < item.rating ? 'yellow__stars' : 'white__stars'}
+                                                        ></li>
+                                                    ))}
+                                                </ul>
+                                                <ul className="rw">
+                                                    <li>({item.reviews}) отзывов</li>
+                                                </ul>
+                                            </ul>
+                                            <p className="card__info">{item.title}</p>
+                                        </div>
+                                        <div className="price__container">
+                                            <p className="thirty__three">{item.price.toLocaleString()}₽</p>
+                                            <p className="thirty__seven">{item.oldPrice.toLocaleString()}₽</p>
+                                        </div>
                                     </div>
-                                    <div className="card__top__second">
-                                        <img src={gift} alt="" />
-                                        <p>Подарок</p>
-                                    </div>
-                                </div>
-                                <p className="card__info">Дверной Замок Golden Soft для отеля</p>
-                                <div className="price__container">
-                                    <p className="thirty__three">33 000₽</p>
-                                    <p className="thirty__seven">37 000₽</p>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link to="/Жёлтый замок">
-                            <div className="pp__card2">
-                                <p className="sale">SALE</p>
-                                <div className="card__top">
-                                    <div className="card__top__first">
-                                        <img src={cross} alt="" />
-                                        <p>Нет в наличии</p>
-                                    </div>
-                                    <div className="card__top__second">
-                                        <img src={gift} alt="" />
-                                        <p>Подарок</p>
-                                    </div>
-                                </div>
-                                <p className="card__info">Вариативный замок Golden Soft для отеля</p>
-                                <div className="price__container">
-                                    <p className="thirty__three">7 000₽</p>
-                                    <p className="thirty__seven">8 000₽</p>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link to="/Золотой замок">
-                            <div className="pp__card3">
-                                <p className="sale">SALE</p>
-                                <div className="card__top">
-                                    <div className="card__top__first">
-                                        <img src={cm} alt="" />
-                                        <p>В наличии</p>
-                                    </div>
-                                    <div className="card__top__second">
-                                        <img src={gift} alt="" />
-                                        <p>Подарок</p>
-                                    </div>
-                                </div>
-                                <p className="card__info">Дверной Замок Golden Soft для офиса</p>
-                                <div className="price__container">
-                                    <p className="thirty__three">33 000₽</p>
-                                    <p className="thirty__seven">39 000₽</p>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link to="/Чёрный замок">
-                            <div className="pp__card4">
-                                <p className="sale">SALE</p>
-                                <div className="card__top">
-                                    <div className="card__top__first">
-                                        <img src={cm} alt="" />
-                                        <p>В наличии</p>
-                                    </div>
-                                    <div className="card__top__second">
-                                        <img src={gift} alt="" />
-                                        <p>Подарок</p>
-                                    </div>
-                                </div>
-                                <p className="card__info">Дверной Замок Golden Soft для офиса</p>
-                                <div className="price__container">
-                                    <p className="thirty__three">9 000₽</p>
-                                    <p className="thirty__seven">12 000₽</p>
-                                </div>
-                            </div>
-                        </Link>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </SwiperSlide>
             </Swiper>
+
         </>
     )
 }

@@ -45,7 +45,7 @@ export default function Categories() {
                             <p className="categ__tittle">Накладные электронные замки</p>
                         </div>
                     </div>
-                    <Link to="/Каталог"><button className="all__categs">Смотреть все</button></Link>
+                    <Link to="/Catalog"><button className="all__categs">Смотреть все</button></Link>
                 </div>
             </section>
         </>

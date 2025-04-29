@@ -63,7 +63,7 @@ export default function NavComponent() {
                                     <li>Замки для офиса</li>
                                     <li>Замки для шкафчиков</li>
                                     <li>Замки для раздевалок</li>
-                                    <Link to="/Категории"><li><button className="popup__more">Смотреть все</button></li></Link>
+                                    <Link to="/Categories"><li><button className="popup__more">Смотреть все</button></li></Link>
                                 </ul>
                                 <ul>
                                     <li><img src={popupimg} alt="" /></li>

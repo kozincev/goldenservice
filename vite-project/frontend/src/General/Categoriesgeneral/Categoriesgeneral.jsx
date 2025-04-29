@@ -34,7 +34,7 @@ export default function Categoriesgeneral() {
                             </div>
                         </div>
                     </div>
-                    <Link to="/Категории"><button className="all__categ">Все категории</button></Link>
+                    <Link to="/Categories"><button className="all__categ">Все категории</button></Link>
                 </div>
             </section>
         </>

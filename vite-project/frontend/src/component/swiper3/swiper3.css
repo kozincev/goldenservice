@@ -1,0 +1,25 @@
+.mySwiper3 .swiper-button-next::after {
+    position: absolute;
+    bottom: 42vh;
+    right: 10vh;
+    color: black;
+
+}
+
+.mySwiper3 .swiper-button-prev::after {
+    position: absolute;
+    bottom: 42vh;
+    left: 130vh;
+    color: black;
+}
+
+.mySwiper3 {
+    width: 100%;
+    height: 90vh;
+}
+.mySwiper3 .catalog__items__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 6vh;
+  }

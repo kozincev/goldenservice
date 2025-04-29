@@ -1,0 +1,47 @@
+; create table product (
+; 	id SERIAL primary key,
+; 	product_name VARCHAR(255) not null,
+; 	model VARCHAR(255) not NULL,
+; 	reviewscount VARCHAR(30),
+; 	price VARCHAR(100) NOT null,
+; 	oldprice VARCHAR(100) NOT null
+; );
+
+; insert into product (product_name, model, reviewscount, price, oldprice)
+; values
+; ('Дверной Замок Golden Soft для офиса', 'JA182765', '12', '33000', '37000'),
+; ('Дверной Замок Golden Soft для отеля', 'BA182765', '30', '37000', '40000'),
+; ('Дверной Замок Golden Soft для комнаты', 'SA182765', '15', '30000', '34000'),
+; ('Дверной Замок Golden Soft для бани', 'PA182765', '20', '25000', '25000'),
+; ('Дверной Замок Golden Soft для офиса', 'JA182765', '12', '33000', '37000'),
+; ('Дверной Замок Golden Soft для отеля', 'BA182765', '30', '37000', '40000'),
+; ('Дверной Замок Golden Soft для комнаты', 'SA182765', '15', '30000', '34000'),
+; ('Дверной Замок Golden Soft для бани', 'PA182765', '20', '25000', '25000'),
+; ('Дверной Замок Golden Soft для офиса', 'JA182765', '12', '33000', '37000'),
+; ('Дверной Замок Golden Soft для офиса', 'JA182765', '12', '33000', '37000'),
+; ('Дверной Замок Golden Soft для отеля', 'BA182765', '30', '37000', '40000'),
+; ('Дверной Замок Golden Soft для комнаты', 'SA182765', '15', '30000', '34000'),
+; ('Дверной Замок Golden Soft для бани', 'PA182765', '20', '25000', '25000'),
+; ('Дверной Замок Golden Soft для офиса', 'JA182765', '12', '33000', '37000');
+
+; CREATE TABLE slider (
+;     id SERIAL PRIMARY KEY,
+;     product_id INT NOT NULL,
+;     image_url VARCHAR(255) NOT NULL,
+;     FOREIGN KEY (product_id) REFERENCES product(id)
+; );
+; INSERT INTO slider (product_id, image_url) VALUES
+; (1, '/imgs/slider/sliderimg1.png'),
+; (2, '/imgs/slider/sliderimg2.png'),
+; (3, '/imgs/slider/sliderimg3.png'),
+; (4, '/imgs/slider/sliderimg4.png'),
+; (5, '/imgs/slider/sliderimg1.png'),
+; (6, '/imgs/slider/sliderimg2.png'),
+; (7, '/imgs/slider/sliderimg3.png'),
+; (8, '/imgs/slider/sliderimg4.png'),
+; (9, '/imgs/slider/sliderimg1.png'),
+; (10, '/imgs/slider/sliderimg1.png'),
+; (11, '/imgs/slider/sliderimg2.png'),
+; (12, '/imgs/slider/sliderimg3.png'),
+; (13, '/imgs/slider/sliderimg4.png'),
+; (14, '/imgs/slider/sliderimg1.png');
