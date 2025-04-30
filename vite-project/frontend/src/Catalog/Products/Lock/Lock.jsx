@@ -11,12 +11,14 @@ import arrow from "../../Catalogmain/imgs/arrow.png";
 import firstcolor from "./imgs/firstcolor.png";
 import secondcolor from "./imgs/secondcolor.png";
 import thirdcolor from "./imgs/thirdcolor.png";
-import descriptionimg from "./imgs/descriptionimg.png"
-import repost from "./imgs/repost.png"
-import comment from "./imgs/comment.png"
-import more from "./imgs/more.png"
-import sliderimg1 from "./imgs/sliderimg1.png"
-import rlcwhitestar from "./imgs/rlcwhitestar.png"
+import repost from "./imgs/repost.png";
+import comment from "./imgs/comment.png";
+import more from "./imgs/more.png";
+import rlcwhitestar from "./imgs/rlcwhitestar.png";
+import deletes from "./imgs/deletes.png";
+
+
+
 
 export default function Lock() {
     const { id } = useParams();
@@ -29,6 +31,7 @@ export default function Lock() {
     const [productData, setProductData] = useState(null);
     const [mainImage, setMainImage] = useState('');
     const [thumbnails, setThumbnails] = useState([]);
+    const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
 
 
 
@@ -84,8 +87,11 @@ export default function Lock() {
     return (
         <section className="goldenlock__section">
             <div className="container">
-                <p className="text__navigation">Главная / Каталог /<span>Дверной Замок Golden Soft Gold для офиса</span></p>
-
+                {productData ? (
+                    <p className="text__navigation">Главная / Каталог /<span>{productData.product_name}</span></p>
+                ) : (
+                    <li>Загрузка...</li>
+                )}
                 {productData ? (
                     <div className="goldenlock__wrapper">
                         <div className="selectedproduct-inner">
@@ -218,12 +224,57 @@ export default function Lock() {
                                 <p className="thirty__seven">{productData.oldprice}</p>
                             </div>
                             <div className="buy__container">
-                                <button>Купить</button>
+                                <button onClick={() => setIsBuyModalOpen(true)}>Купить</button>
                                 <div className="favourites__container">
                                     <img src={like} alt="" />
                                     <span>В избранное</span>
                                 </div>
                             </div>
+                            {isBuyModalOpen && (
+                                <div className='popup-overlay' onClick={() => setIsBuyModalOpen(false)}>
+                                    <div className='popup-content' onClick={(e) => e.stopPropagation()}>
+                                        <div className="popup__top__content">
+                                            <h3>Корзина</h3>
+                                            <button className='close-popup' onClick={() => setIsBuyModalOpen(false)}>
+                                                <img src={popupclose} alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="top__line__popup"></div>
+
+                                        {productData && (
+                                            <div className="product-modal-content">
+                                                <div className="modal-images">
+                                                    {thumbnails[0] && (
+                                                        <img
+                                                            src={thumbnails[0].image_url}
+                                                            alt="Product"
+                                                            className="main-product-image"
+                                                        />
+                                                    )}
+                                                </div>
+                                                <div className="popup__middle__container">
+                                                    <div className="popup__name__container">
+                                                        <h3 className="popup__modal__product__name">{productData.product_name}</h3>
+                                                        <p>+ Подарок: <span>“Приложение к замкам Golden Service”</span></p>
+                                                    </div>
+                                                    <div className="delete__container">
+                                                        <img src={deletes} alt="" />
+                                                        <button>Удалить</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        )}
+                                        <div className="popup__bottom__container">
+                                            <p>Итого: 66 000₽</p>
+                                            <div className="popup__bottom__buttons__container">
+                                                <button>Оформить заказ</button>
+                                                <button onClick={() => setIsBuyModalOpen(false)}>Продолжить покупки</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                             <div>
                                 <div className="product__other__container">
                                     <div className={`product__other__block__one ${isActive ? "active" : ""}`}
@@ -360,7 +411,7 @@ export default function Lock() {
                             </div>
                             {thumbnails.map((thumb, index) => (
                                 <div className="description__last__content">
-                                    <img src={thumb.image_url}  alt={`Thumbnail ${index + 1}`} />
+                                    <img src={thumb.image_url} alt={`Thumbnail ${index + 1}`} />
                                 </div>
                             ))}
                         </div>
