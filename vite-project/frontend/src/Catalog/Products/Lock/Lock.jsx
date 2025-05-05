@@ -32,10 +32,21 @@ export default function Lock() {
     const [mainImage, setMainImage] = useState('');
     const [thumbnails, setThumbnails] = useState([]);
     const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
+    const [quantity, setQuantity] = useState(1);
+    const incrementQuantity = () => {
+        if (quantity < 99) setQuantity(prev => prev + 1);
+    };
+    const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
 
 
 
 
+    const parsePrice = (priceString) => {
+        if (!priceString) return 0;
+        // Удаляем все нецифровые символы включая пробелы и валюту
+        const numericString = priceString.replace(/[^\d]/g, '');
+        return parseInt(numericString, 10) || 0;
+    };
 
     const images = productData
         ? Array(5).fill(productData.image)
@@ -256,6 +267,18 @@ export default function Lock() {
                                                     <div className="popup__name__container">
                                                         <h3 className="popup__modal__product__name">{productData.product_name}</h3>
                                                         <p>+ Подарок: <span>“Приложение к замкам Golden Service”</span></p>
+
+                                                        <div className="quantity-control">
+                                                            <button
+                                                                onClick={decrementQuantity}
+                                                                disabled={quantity === 1}
+                                                            >-</button>
+                                                            <span className="quantity">{quantity}</span>
+                                                            <button
+                                                                onClick={incrementQuantity}
+                                                                disabled={quantity === 99}
+                                                            >+</button>
+                                                        </div>
                                                     </div>
                                                     <div className="delete__container">
                                                         <img src={deletes} alt="" />
@@ -263,10 +286,13 @@ export default function Lock() {
                                                     </div>
                                                 </div>
                                             </div>
-
                                         )}
                                         <div className="popup__bottom__container">
-                                            <p>Итого: 66 000₽</p>
+                                            <p>Итого: {
+                                                productData && productData.price
+                                                    ? (quantity * parsePrice(productData.price)).toLocaleString('ru-RU') + '₽'
+                                                    : '0₽'
+                                            }</p>
                                             <div className="popup__bottom__buttons__container">
                                                 <button>Оформить заказ</button>
                                                 <button onClick={() => setIsBuyModalOpen(false)}>Продолжить покупки</button>

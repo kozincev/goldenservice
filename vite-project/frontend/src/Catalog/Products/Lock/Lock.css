@@ -767,6 +767,7 @@
 .popup__modal__product__name{
     align-self: baseline;
     font-size: 30px;
+    margin-bottom: 10px;
 }
 .delete__container{   
     height: fit-content;
@@ -836,3 +837,31 @@
 .buy__container button:nth-child(1){
     cursor: pointer;
 }
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+  }
+  
+  .quantity-control button {
+    width: 30px;
+    height: 50px;
+    padding: 5px 15px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 25px;
+    border-radius: 4px;
+  }
+
+  
+  .quantity-control .quantity {
+    font-size: 16px;
+    min-width: 80px;
+    height: 40px;
+    text-align: center;
+    padding: 10px 0px;
+    border: 1px solid #EAEAEA;
+    color: black;
+    text-decoration: none;
+  }
