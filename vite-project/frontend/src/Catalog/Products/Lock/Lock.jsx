@@ -16,12 +16,13 @@ import comment from "./imgs/comment.png";
 import more from "./imgs/more.png";
 import rlcwhitestar from "./imgs/rlcwhitestar.png";
 import deletes from "./imgs/deletes.png";
-
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 export default function Lock() {
     const { id } = useParams();
+    const WHOLESALE_THRESHOLD = 100000;
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [isActive, setIsActive] = useState(false);
@@ -33,9 +34,15 @@ export default function Lock() {
     const [thumbnails, setThumbnails] = useState([]);
     const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
     const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
+
+
+
     const incrementQuantity = () => {
-        if (quantity < 99) setQuantity(prev => prev + 1);
+        console.log('Current quantity before:', quantity);
+        setQuantity(prev => prev + 1);
     };
+
     const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
 
 
@@ -43,9 +50,8 @@ export default function Lock() {
 
     const parsePrice = (priceString) => {
         if (!priceString) return 0;
-        // Удаляем все нецифровые символы включая пробелы и валюту
-        const numericString = priceString.replace(/[^\d]/g, '');
-        return parseInt(numericString, 10) || 0;
+        const numericValue = parseInt(priceString.replace(/\D/g, ''), 10);
+        return isNaN(numericValue) ? 0 : numericValue;
     };
 
     const images = productData
@@ -71,6 +77,8 @@ export default function Lock() {
         setIsOpen(false);
         document.body.style.overflow = 'auto';
     };
+
+
 
     useEffect(() => {
 
@@ -276,7 +284,6 @@ export default function Lock() {
                                                             <span className="quantity">{quantity}</span>
                                                             <button
                                                                 onClick={incrementQuantity}
-                                                                disabled={quantity === 99}
                                                             >+</button>
                                                         </div>
                                                     </div>
@@ -288,15 +295,33 @@ export default function Lock() {
                                             </div>
                                         )}
                                         <div className="popup__bottom__container">
-                                            <p>Итого: {
-                                                productData && productData.price
-                                                    ? (quantity * parsePrice(productData.price)).toLocaleString('ru-RU') + '₽'
-                                                    : '0₽'
-                                            }</p>
-                                            <div className="popup__bottom__buttons__container">
-                                                <button>Оформить заказ</button>
-                                                <button onClick={() => setIsBuyModalOpen(false)}>Продолжить покупки</button>
-                                            </div>
+                                            {productData?.price && (
+                                                <>
+                                                    <p>
+                                                        Итого: {(quantity * parsePrice(productData.price)).toLocaleString('ru-RU')}₽
+                                                        {quantity * parsePrice(productData.price) > 100000 && (
+                                                            <span className="wholesale-warning">
+                                                                К сожалению, оформления товара свыше 100 000₽ доступно только оптом,
+                                                                пожалуйста перейдите на страницу оптовой продажи
+                                                            </span>
+                                                        )}
+                                                    </p>
+                                                    <div className="popup__bottom__buttons__container">                                                      
+                                                            {quantity * parsePrice(productData.price) > 100000 ? (
+                                                                <Link to="/Wholesale" className="wholesale-link">
+                                                                    <button>Оптовая продажа</button>
+                                                                </Link>
+                                                            ) : (
+                                                                <button onClick={() => console.log('Оформление заказа')}>
+                                                                    Оформить заказ
+                                                                </button>
+                                                            )}
+                                                        <button onClick={() => setIsBuyModalOpen(false)}>
+                                                            Продолжить покупки
+                                                        </button>
+                                                    </div>
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

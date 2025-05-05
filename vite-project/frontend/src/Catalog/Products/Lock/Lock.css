@@ -698,7 +698,8 @@
     padding: 2rem;
     border-radius: 8px;
     width: 37%;
-    height: 45vh;
+    min-height: 45vh;
+    max-height: 55vh;
 }
 
 .product-modal-content {
@@ -864,4 +865,16 @@
     border: 1px solid #EAEAEA;
     color: black;
     text-decoration: none;
+  }
+  .wholesale-warning {
+    display: block;
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 10px;
+    max-width: 100%;
+    line-height: 1.4;
+    padding: 8px;
+    background: #fff3f3;
+    border-radius: 4px;
+    border: 1px solid #ffcccc;
   }
