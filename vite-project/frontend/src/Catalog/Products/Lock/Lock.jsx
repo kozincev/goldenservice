@@ -312,9 +312,11 @@ export default function Lock() {
                                                                     <button>Оптовая продажа</button>
                                                                 </Link>
                                                             ) : (
-                                                                <button onClick={() => console.log('Оформление заказа')}>
+                                                                <Link to="/Order" className="makinganorder-link">
+                                                              <button onClick={() => console.log('Оформление заказа')}>
                                                                     Оформить заказ
                                                                 </button>
+                                                                </Link>
                                                             )}
                                                         <button onClick={() => setIsBuyModalOpen(false)}>
                                                             Продолжить покупки
