@@ -2,3 +2,135 @@
     width: 100%;
     height: 100vh;
 }
+.ordermain__form__container{
+    width: 100%;
+    height: fit-content;
+    display: flex;;
+}
+.ordermain__first__form{
+    width: 711px;
+    height: 696px;
+    border: 1px #C4CDD5 solid;
+    margin-top: 2vh;
+    font-family: 'SF Pro Display';
+    padding: 10px 10px;
+}
+.ordermain__first__form legend{
+    font-size: 25px;
+    font-weight: 400;
+}
+.form__top__first__content{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 5vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.form__content{
+    display: flex;
+    flex-direction: column;
+}
+.ordermain__first__form>.form__top__first__content input{
+    width: 250px;
+    height: 50px;
+    border: 1px #C4CDD5 solid;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+.form__top__second__content{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 5vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.ordermain__first__form>.form__top__second__content input{
+    width: 250px;
+    height: 50px;
+    border: 1px #C4CDD5 solid;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+.form__content>label{
+    font-weight: 300;
+    opacity: 0.7;
+}
+.form__middle__content{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 5vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.form__radio__container{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    line-height: 35px;
+}
+.form__middle__content>.form__radio__container>.middle__radio>.radio__middle{
+    width: 18px;
+    height: 18px;
+}
+.middle__radio{
+    display: flex;
+    gap: 0 5px;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 300;
+}
+.middle__radio>label{
+    opacity: 0.8;
+}
+.form__bottom__content{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 5vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.form__radio__container{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    line-height: 35px;
+}
+.form__bottom__content>.form__radio__container>.bottom__radio>.radio__bottom{
+    width: 18px;
+    height: 18px;
+}
+.bottom__radio{
+    display: flex;
+    gap: 0 5px;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 300;
+}
+.bottom__radio>label{
+    opacity: 0.8;
+}
+.form__comment__content{
+    width: 100%;
+    height: fit-content;
+    gap: 5vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.form__comment__content legend{
+    font-size: 18px;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+.form__comment__content>textarea{
+    width: 600px;
+    height: 160px;
+}
+.form__comment__content>textarea::placeholder{
+    font-size: 18px;
+    padding: 10px 10px;
+}
