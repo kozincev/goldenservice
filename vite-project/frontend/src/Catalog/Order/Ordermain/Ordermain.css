@@ -134,3 +134,61 @@
     font-size: 18px;
     padding: 10px 10px;
 }
+.ordermainformcontainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.ordermain__second__form {
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-info {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.product-details h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+}
+
+.total-price {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.confirm-button {
+    width: 100%;
+    padding: 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.confirm-button:hover {
+    background: #45a049;
+}

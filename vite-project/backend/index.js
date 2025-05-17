@@ -10,7 +10,7 @@ const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'postgres',
-    password: '12345',
+    password: '1234',
     port: 5432,
 });
 
@@ -40,6 +40,54 @@ app.get('/api/slider/:productId', async (req, res) => {
             [req.params.productId]
         );
         res.json(result.rows);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+app.post('/api/orders', async (req, res) => {
+    try {
+        const {
+            lastName,
+            firstName,
+            phone,
+            email,
+            delivery,
+            payment,
+            comment,
+            product_id,
+            quantity,
+            total_price
+        } = req.body;
+
+        const result = await pool.query(
+            `INSERT INTO orders (
+                last_name, 
+                first_name, 
+                phone, 
+                email, 
+                delivery_method, 
+                payment_method, 
+                comment, 
+                product_id, 
+                quantity, 
+                total_price
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
+            [
+                lastName,
+                firstName,
+                phone,
+                email,
+                delivery,
+                payment,
+                comment,
+                product_id,
+                quantity,
+                total_price
+            ]
+        );
+
+        res.status(201).json(result.rows[0]);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
