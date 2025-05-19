@@ -6,6 +6,7 @@ import "./Ordermain.css";
 export default function Ordermain() {
     const location = useLocation();
     const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         lastName: '',
         firstName: '',
@@ -15,18 +16,63 @@ export default function Ordermain() {
         payment: '',
         comment: ''
     });
+    const [isLoading, setIsLoading] = useState(true);
+    const [product, setProduct] = useState(null);
+    const [quantity, setQuantity] = useState(1);
+    const [images, setImages] = useState([]);   // ← для слайдера
+
+    // Инициализация product + quantity
+    useEffect(() => {
+        const state = location.state;
+        if (state?.product && state.quantity) {
+            setProduct(state.product);
+            setQuantity(state.quantity);
+            localStorage.setItem('orderProduct', JSON.stringify(state.product));
+            localStorage.setItem('orderQuantity', String(state.quantity));
+        } else {
+            const storedProduct = localStorage.getItem('orderProduct');
+            const storedQuantity = localStorage.getItem('orderQuantity');
+            if (storedProduct && storedQuantity) {
+                try {
+                    setProduct(JSON.parse(storedProduct));
+                    setQuantity(parseInt(storedQuantity, 10));
+                } catch (err) {
+                    console.error("Ошибка парсинга localStorage:", err);
+                }
+            }
+        }
+        setIsLoading(false);
+    }, []);
 
 
-    const { product, quantity } = location.state || {};
+    // Загрузка списка изображений из slider для текущего product.id
+    useEffect(() => {
+        if (!product) return;
 
-    const handleInputChange = (e) => {
+        fetch(`http://localhost:3010/api/slider/${product.id}`)
+            .then(res => {
+                if (!res.ok) throw new Error('Не удалось загрузить изображения');
+                return res.json();
+            })
+            .then(data => {
+                setImages(data);       // data = [{ id, product_id, image_url }, …]
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, [product]);
+
+    const handleInputChange = e => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        setFormData(f => ({ ...f, [name]: value }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const parsePrice = priceString => {
+        return parseInt(priceString.replace(/\D/g, ''), 10) || 0;
+    };
 
+    const handleSubmit = async e => {
+        e.preventDefault();
         if (!product || !quantity) {
             alert('Ошибка: товар не выбран');
             return;
@@ -35,31 +81,27 @@ export default function Ordermain() {
         const orderData = {
             ...formData,
             product_id: product.id,
-            quantity: quantity,
-            total_price: quantity * parsePrice(product.price)
+            quantity,
+            total_price: quantity * parsePrice(product.price),
         };
 
         try {
-            const response = await fetch('http://localhost:3010/api/orders', {
+            const res = await fetch('http://localhost:3010/api/orders', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(orderData),
             });
-
-            if (!response.ok) throw new Error('Ошибка отправки заказа');
-
+            if (!res.ok) throw new Error('Ошибка сервера');
+            // чистим
+            localStorage.removeItem('orderProduct');
+            localStorage.removeItem('orderQuantity');
             navigate('/order-confirmation');
-        } catch (error) {
-            console.error('Error:', error);
+        } catch (err) {
+            console.error(err);
             alert('Ошибка при оформлении заказа');
         }
     };
 
-    const parsePrice = (priceString) => {
-        return parseInt(priceString.replace(/\D/g, ''), 10) || 0;
-    };
     return (
         <>
             <section className="ordermain__section">
@@ -70,44 +112,50 @@ export default function Ordermain() {
                             <legend>1. Контактные данные</legend>
                             <div className="form__top__first__content">
                                 <div className="form__content">
-                                    <label htmlFor="">Фамилия</label>
+                                    <label>Фамилия</label>
                                     <input
                                         type="text"
                                         name="lastName"
                                         value={formData.lastName}
                                         onChange={handleInputChange}
                                         placeholder="Зайцев"
+                                        required
                                     />
                                 </div>
                                 <div className="form__content">
-                                    <label htmlFor="">Имя</label>
+                                    <label>Имя</label>
                                     <input
                                         type="text"
                                         name="firstName"
                                         value={formData.firstName}
                                         onChange={handleInputChange}
                                         placeholder="Михаил"
+                                        required
                                     />
                                 </div>
                             </div>
                             <div className="form__top__second__content">
                                 <div className="form__content">
-                                    <label htmlFor="">Телефон</label>
+                                    <label>Телефон</label>
                                     <input
-                                        type="number"
+                                        type="tel"
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleInputChange}
-                                        placeholder="+7 (_ _ _) _ _  _ _  _ _ _" />
+                                        placeholder="+7 (_ _ _) _ _  _ _  _ _ _"
+                                        required
+                                    />
                                 </div>
                                 <div className="form__content">
-                                    <label htmlFor="">E-mail</label>
+                                    <label>E-mail</label>
                                     <input
                                         type="email"
                                         name="email"
                                         value={formData.email}
                                         onChange={handleInputChange}
-                                        placeholder="example@mail.ru" />
+                                        placeholder="example@mail.ru"
+                                        required
+                                    />
                                 </div>
                             </div>
                             <legend>2. Доставка</legend>
@@ -115,73 +163,117 @@ export default function Ordermain() {
                                 <div className="form__radio__container">
                                     <div className="middle__radio">
                                         <input
-                                            type="radio" 
-                                            className="radio__middle"
+                                            type="radio"
                                             name="delivery"
-                                            value={formData.email}
-                                             onChange={handleInputChange} /><label htmlFor="">Сдек</label></div>
+                                            value="Сдек"
+                                            checked={formData.delivery === "Сдек"}
+                                            onChange={handleInputChange}
+                                            required
+                                        />
+                                        <label>Сдек</label>
+                                    </div>
                                     <div className="middle__radio">
                                         <input
                                             type="radio"
-                                            className="radio__middle"
                                             name="delivery"
-                                            value={formData.email}
-                                             onChange={handleInputChange} /><label htmlFor="">Почта России</label></div>
+                                            value="Почта России"
+                                            checked={formData.delivery === "Почта России"}
+                                            onChange={handleInputChange}
+                                        />
+                                        <label>Почта России</label>
+                                    </div>
                                     <div className="middle__radio">
                                         <input
                                             type="radio"
-                                            className="radio__middle"
                                             name="delivery"
-                                            value={formData.email}
-                                             onChange={handleInputChange} /><label htmlFor="">Деловые линии</label></div>
+                                            value="Деловые линии"
+                                            checked={formData.delivery === "Деловые линии"}
+                                            onChange={handleInputChange}
+                                        />
+                                        <label>Деловые линии</label>
+                                    </div>
                                 </div>
                             </div>
                             <legend>3. Оплата</legend>
                             <div className="form__bottom__content">
                                 <div className="form__radio__container">
-                                    <div className="bottom__radio"><input type="radio" className="radio__bottom" /><label htmlFor="">Оплата при получении товара</label></div>
-                                    <div className="bottom__radio"><input type="radio" className="radio__bottom" /><label htmlFor="">Банковская карта</label></div>
+                                    <div className="bottom__radio">
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="Оплата при получении товара"
+                                            checked={formData.payment === "Оплата при получении товара"}
+                                            onChange={handleInputChange}
+                                            required
+                                        />
+                                        <label>Оплата при получении товара</label>
+                                    </div>
+                                    <div className="bottom__radio">
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="Банковская карта"
+                                            checked={formData.payment === "Банковская карта"}
+                                            onChange={handleInputChange}
+                                        />
+                                        <label>Банковская карта</label>
+                                    </div>
                                 </div>
                             </div>
                             <div className="form__comment__content">
                                 <legend>Комментарий</legend>
-                                <textarea name="" id="" placeholder="Напишите комментарий"></textarea>
+                                <textarea
+                                    name="comment"
+                                    value={formData.comment}
+                                    onChange={handleInputChange}
+                                    placeholder="Напишите комментарий"
+                                ></textarea>
                             </div>
                         </form>
-                        <form className="ordermain__second__form">
+                        <form className="ordermain__second__form" onSubmit={handleSubmit}>
                             <h3>Итого</h3>
-                            {product && (
+                            {isLoading ? (
+                                <p>Загрузка...</p>
+                            ) : product ? (
                                 <div className="order-summary">
                                     <div className="product-info">
-                                        <img
-                                            src={product.thumbnails?.[0]?.image_url}
-                                            alt={product.product_name}
-                                            className="product-image"
-                                        />
+                                        {images[0]?.image_url ? (
+                                            <img
+                                                src={images[0].image_url}
+                                                alt={product.product_name}
+                                                className="product-image"
+                                            />
+                                        ) : (
+                                            <div className="no-image">Изображение отсутствует</div>
+                                        )}
                                         <div className="product-details">
                                             <h4>{product.product_name}</h4>
+                                            <p>+ Подарок: <span>“Приложение к замкам Golden Service”</span></p>
                                             <p>Количество: {quantity}</p>
                                             <p>Цена: {product.price}</p>
                                         </div>
                                     </div>
                                     <div className="total-price">
-                                        <p>Общая сумма:
-                                            {(quantity * parsePrice(product.price)).toLocaleString('ru-RU')}₽
+                                        <p>
+                                            К оплате:{' '}
+                                            {(
+                                                quantity *
+                                                parsePrice(product.price)
+                                            ).toLocaleString('ru-RU')}
+                                            ₽
                                         </p>
                                     </div>
-                                    <button
-                                        type="submit"
-                                        className="confirm-button"
-                                        onClick={handleSubmit}
-                                    >
+                                    <button type="submit" className="confirm-button">
                                         Подтвердить заказ
                                     </button>
                                 </div>
+                            ) : (
+                                <p>Ошибка: товар не выбран</p>
                             )}
                         </form>
                     </div>
                 </div>
             </section>
         </>
-    )
+    );
 }

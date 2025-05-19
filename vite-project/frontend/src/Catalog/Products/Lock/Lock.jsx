@@ -306,18 +306,21 @@ export default function Lock() {
                                                             </span>
                                                         )}
                                                     </p>
-                                                    <div className="popup__bottom__buttons__container">                                                      
-                                                            {quantity * parsePrice(productData.price) > 100000 ? (
-                                                                <Link to="/Wholesale" className="wholesale-link">
-                                                                    <button>Оптовая продажа</button>
-                                                                </Link>
-                                                            ) : (
-                                                                <Link to="/Order" className="makinganorder-link">
-                                                              <button onClick={() => console.log('Оформление заказа')}>
+                                                    <div className="popup__bottom__buttons__container">
+                                                        {quantity * parsePrice(productData.price) > 100000 ? (
+                                                            <Link to="/Wholesale" className="wholesale-link">
+                                                                <button>Оптовая продажа</button>
+                                                            </Link>
+                                                        ) : (
+                                                            <Link to="/Order" className="makinganorder-link" state={{
+                                                                product: productData,
+                                                                quantity: quantity,
+                                                            }}>
+                                                                <button onClick={() => console.log('Оформление заказа')}>
                                                                     Оформить заказ
                                                                 </button>
-                                                                </Link>
-                                                            )}
+                                                            </Link>
+                                                        )}
                                                         <button onClick={() => setIsBuyModalOpen(false)}>
                                                             Продолжить покупки
                                                         </button>

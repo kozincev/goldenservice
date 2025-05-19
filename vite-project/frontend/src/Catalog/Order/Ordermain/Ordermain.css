@@ -5,7 +5,8 @@
 .ordermain__form__container{
     width: 100%;
     height: fit-content;
-    display: flex;;
+    display: flex;
+    gap: 8vh;
 }
 .ordermain__first__form{
     width: 711px;
@@ -134,16 +135,15 @@
     font-size: 18px;
     padding: 10px 10px;
 }
-.ordermainformcontainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-}
 
 .ordermain__second__form {
+    width: 50%;
     padding: 20px;
-    background: #f8f8f8;
+    height: 700px;
+    background: white;
+    border: 1px #C4CDD5 solid;
     border-radius: 8px;
+    margin-top: 1.7vh;
 }
 
 .order-summary {
@@ -168,8 +168,11 @@
 }
 
 .product-details h4 {
-    margin: 0 0 8px 0;
     font-size: 16px;
+    word-spacing: 4px;
+    font-weight: 400;
+    margin-right: 5vh;
+    padding-bottom: 10px;
 }
 
 .total-price {
@@ -179,16 +182,13 @@
 }
 
 .confirm-button {
-    width: 100%;
+    width: 50%;
+    align-self: center;
     padding: 15px;
-    background: #4CAF50;
+    background: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-}
-
-.confirm-button:hover {
-    background: #45a049;
 }

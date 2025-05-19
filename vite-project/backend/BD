@@ -30,6 +30,7 @@
      image_url VARCHAR(255) NOT NULL,
      FOREIGN KEY (product_id) REFERENCES product(id)
  );
+ 
  INSERT INTO slider (product_id, image_url) VALUES
  (1, '/imgs/slider/sliderimg1.png'),
  (2, '/imgs/slider/sliderimg2.png'),
@@ -45,3 +46,18 @@
  (12, '/imgs/slider/sliderimg3.png'),
  (13, '/imgs/slider/sliderimg4.png'),
  (14, '/imgs/slider/sliderimg1.png');
+
+ CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    last_name VARCHAR(100) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    delivery_method VARCHAR(50) NOT NULL,
+    payment_method VARCHAR(50) NOT NULL,
+    comment TEXT,
+    product_id INTEGER REFERENCES product(id),
+    quantity INTEGER NOT NULL,
+    total_price INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
