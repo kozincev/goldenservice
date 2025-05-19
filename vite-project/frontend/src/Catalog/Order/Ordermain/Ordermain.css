@@ -139,11 +139,12 @@
 .ordermain__second__form {
     width: 50%;
     padding: 20px;
-    height: 700px;
+    height: 500px;
     background: white;
     border: 1px #C4CDD5 solid;
     border-radius: 8px;
     margin-top: 1.7vh;
+    font-family: 'SF Pro Display';
 }
 
 .order-summary {
@@ -161,12 +162,15 @@
 }
 
 .product-image {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 4px;
 }
-
+.product-details{
+    line-height: 20px;
+    margin-bottom: 5vh;
+}
 .product-details h4 {
     font-size: 16px;
     word-spacing: 4px;
@@ -174,7 +178,10 @@
     margin-right: 5vh;
     padding-bottom: 10px;
 }
-
+.product-details span{
+    text-decoration: underline;
+    color: #007bff;
+}
 .total-price {
     font-size: 18px;
     font-weight: bold;
@@ -182,13 +189,18 @@
 }
 
 .confirm-button {
-    width: 50%;
+    width: 40%;
     align-self: center;
     padding: 15px;
     background: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
     font-size: 16px;
+}
+.order__product__main__info{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
 }

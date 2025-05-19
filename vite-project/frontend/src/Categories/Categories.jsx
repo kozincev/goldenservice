@@ -8,7 +8,7 @@ export default function Categories() {
         <>
             <section className="categories">
                 <div className="container">
-                    <p className="text__navigation">Главная / <span>Каталог</span></p>
+                    <p className="text__navigation">Главная / <span>Категории</span></p>
                     <h2>Категории</h2>
                     <div className="categ__wrapper">
                         <div className="categ__card">

@@ -19,9 +19,40 @@ export default function Ordermain() {
     const [isLoading, setIsLoading] = useState(true);
     const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
-    const [images, setImages] = useState([]);   // ← для слайдера
+    const [images, setImages] = useState([]);
+    const validateForm = () => {
+        const nameRegex = /^[А-Яа-яA-Za-z\s-]+$/;
+        const phoneRegex = /^\+7\s?\(?\d{3}\)?\s?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Инициализация product + quantity
+        if (!nameRegex.test(formData.lastName)) {
+            alert("Пожалуйста, введите корректную фамилию (только буквы и дефис).");
+            return false;
+        }
+        if (!nameRegex.test(formData.firstName)) {
+            alert("Пожалуйста, введите корректное имя (только буквы и дефис).");
+            return false;
+        }
+        if (!phoneRegex.test(formData.phone)) {
+            alert("Пожалуйста, введите корректный номер телефона в формате +7 (XXX) XXX-XX-XX.");
+            return false;
+        }
+        if (!emailRegex.test(formData.email)) {
+            alert("Пожалуйста, введите корректный email.");
+            return false;
+        }
+        if (!formData.delivery) {
+            alert("Пожалуйста, выберите способ доставки.");
+            return false;
+        }
+        if (!formData.payment) {
+            alert("Пожалуйста, выберите способ оплаты.");
+            return false;
+        }
+
+        return true;
+    };
+
     useEffect(() => {
         const state = location.state;
         if (state?.product && state.quantity) {
@@ -45,7 +76,6 @@ export default function Ordermain() {
     }, []);
 
 
-    // Загрузка списка изображений из slider для текущего product.id
     useEffect(() => {
         if (!product) return;
 
@@ -55,7 +85,7 @@ export default function Ordermain() {
                 return res.json();
             })
             .then(data => {
-                setImages(data);       // data = [{ id, product_id, image_url }, …]
+                setImages(data);
             })
             .catch(err => {
                 console.error(err);
@@ -78,6 +108,8 @@ export default function Ordermain() {
             return;
         }
 
+        if (!validateForm()) return; // ← добавили проверку
+
         const orderData = {
             ...formData,
             product_id: product.id,
@@ -92,7 +124,6 @@ export default function Ordermain() {
                 body: JSON.stringify(orderData),
             });
             if (!res.ok) throw new Error('Ошибка сервера');
-            // чистим
             localStorage.removeItem('orderProduct');
             localStorage.removeItem('orderQuantity');
             navigate('/order-confirmation');
@@ -248,9 +279,11 @@ export default function Ordermain() {
                                         )}
                                         <div className="product-details">
                                             <h4>{product.product_name}</h4>
-                                            <p>+ Подарок: <span>“Приложение к замкам Golden Service”</span></p>
-                                            <p>Количество: {quantity}</p>
-                                            <p>Цена: {product.price}</p>
+                                            <p>+ Подарок: <br /><span>“Приложение к замкам Golden Service”</span></p>
+                                            <div className='order__product__main__info'>
+                                                <p>Количество: {quantity}</p>
+                                                <p>Цена (за шт.) : {product.price}</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="total-price">
