@@ -1,0 +1,224 @@
+.wholesalemain__section{
+    width: 100%;
+    height: 80vh;
+    background-color: #F2F8FF;
+}
+.wholesalemain__section h3{
+    width: 600px;
+    font-size: 60px;
+    margin-bottom: 2vh;
+}
+.application__text__container{
+    width: 50%;
+}
+.application__text__container p{
+    font-size: 20px;
+    width: 530px;
+    color: #454F5B;
+}
+.wholesalemain__application__wrapper{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.application__form{
+    width:  900px;
+    height: 500px;
+    border: 1px #C4CDD5 solid;
+    background-color: white;
+    padding: 20px 20px;
+    font-family: 'SF Pro Display';
+}
+.application__form h3{
+    font-size: 35px;
+}
+.application__form__top__content{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 0 20px;
+    margin-bottom: 3vh;
+}
+.application__input__container{
+    display: flex;
+    flex-direction: column;
+}
+.application__input__container label{
+    margin-bottom: 10px;
+}
+.application__input__container input{
+    width: 260px;
+    height: 50px;
+    padding: 10px;
+    border: 1px #EBECEC solid;
+}
+.application__form__middle__content{
+    width: 95.5%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    gap: 0 20px;
+}
+#root > section > div > div > form > div.application__form__middle__content > div:nth-child(1) > input[type=search]{
+    width: 500px;
+    height: 50px;
+    background-image: url(./imgs/appsearch.png);
+    background-repeat: no-repeat;
+    background-size: auto   ;
+    background-position: 1%;
+    padding: 15px 30px;
+}
+.application__form__functions{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.application__function{
+    width: 100%;
+    display: flex;
+    gap: 0 10px;
+    padding-bottom: 20px;
+}
+.application__checkmark{
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+}
+.application__form__bottom__content{
+    width: 95.5%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+}
+.application__form__bottom__content button{
+    width: 300px;
+    height: 50px;
+    background-color: #4295E4;
+    border: none;
+    color: white;
+}
+
+.application__input__container input.filled,
+.application__input__container select.filled,
+.application__form textarea.filled {
+  background-color: #e0f0ff;
+}
+
+
+.application__form__bottom__content button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+.application__function {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.application__function input {
+  display: none;
+}
+.application__function .application__checkmark {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border: 1px solid #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../../Catalog/Catalogmain/imgs/checkboxcontent.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.application__function input:checked + .application__checkmark {
+  background-color: #007bff;
+}
+.application__function input:checked + .application__checkmark img {
+  display: block;
+}
+.application__function img {
+  display: none;
+  width: 12px;
+  height: 12px;
+}
+.autocomplete-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .autocomplete-list li {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  .autocomplete-list li:hover {
+    background-color: #f0f0f0;
+  }
+  .application__input__container {
+    position: relative; 
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    padding: 2rem;
+    max-width: 500px;
+    height: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'SF Pro Display';
+}
+.modal h2{
+    width: 100%;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+    padding: 0;
+    text-align: center;
+    font-size: 28px;
+}
+.modal button:last-child{
+    width: 300px;
+    height: 50px;
+    border: none;
+    background-color: #4295E4;
+    color: white;
+    cursor: pointer;
+}
+.modal p{
+    margin-bottom: 20px;
+}
+
+  

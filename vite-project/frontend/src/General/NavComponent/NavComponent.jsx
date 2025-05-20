@@ -36,7 +36,7 @@ export default function NavComponent() {
                             <img src={arrow} alt="" className="arrow" />
                         </div>
 
-                        <a href="">Оптовая продажа</a>
+                        <Link to="/Wholesale">Оптовая продажа</Link>
 
                         <a href="">О нас</a>
                     </div>

@@ -1,6 +1,6 @@
 .ordermain__section{
     width: 100%;
-    height: 100vh;
+    height: fit-content;
 }
 .ordermain__form__container{
     width: 100%;
@@ -10,7 +10,7 @@
 }
 .ordermain__first__form{
     width: 711px;
-    height: 696px;
+    height: fit-content;
     border: 1px #C4CDD5 solid;
     margin-top: 2vh;
     font-family: 'SF Pro Display';
@@ -86,6 +86,7 @@
 .middle__radio>label{
     opacity: 0.8;
 }
+
 .form__bottom__content{
     width: 100%;
     height: fit-content;
@@ -122,7 +123,7 @@
     margin-bottom: 10px;
 }
 .form__comment__content legend{
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
     opacity: 0.8;
     margin-bottom: 10px;
@@ -130,10 +131,11 @@
 .form__comment__content>textarea{
     width: 600px;
     height: 160px;
+    padding: 10px 10px;
+    font-size: 18px;
 }
 .form__comment__content>textarea::placeholder{
     font-size: 18px;
-    padding: 10px 10px;
 }
 
 .ordermain__second__form {
@@ -204,3 +206,48 @@
     margin-top: 20px;
     justify-content: space-between;
 }
+.ordermain__form--combined{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.ordermain__first__form input,
+.ordermain__first__form textarea {
+  background-color: white;
+}
+
+
+.ordermain__first__form input.filled,
+.ordermain__first__form textarea.filled {
+  background-color: #e0f0ff;
+}
+
+.confirm-button:disabled {
+  background-color: #4295E440;
+  cursor: not-allowed;
+}
+.filled {
+    background-color: #e0f0ff;
+  }
+  
+  .confirm-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .delivery-extra {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  .delivery-extra select{
+    width: 300px;
+    height: 50px;
+    border: 1px #4295E433 solid;
+    margin-top: 10px;
+  }
+  .delivery-extra select>option{
+    background-color: white;
+  }
+  
