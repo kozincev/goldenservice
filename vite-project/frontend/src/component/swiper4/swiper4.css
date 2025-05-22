@@ -1,0 +1,45 @@
+.swiper__projects{
+    width: 100%;
+    height: 62vh;
+}
+.swiper__projects .swiper-button-next::after {
+    position: absolute;
+    top: 28vh;
+    color: black;
+}
+
+.swiper__projects .swiper-button-prev::after {
+    position: absolute;
+    top: 28vh;
+    color: black;
+}
+.projects__wrapper{
+    width: 100%;
+    height: 327px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 20px;
+}
+.projects__first__content{
+    height: fit-content;
+}
+.projects__second__content{
+    height: fit-content;
+    text-align: left;
+    font-family: 'SF PRo Display';
+}
+.projects__cm__container{
+    width: 500px;
+    height: 50px;
+    display: flex;
+    gap: 0 10px;
+}
+.projects__cm__container>.projects__cm{
+    width: 20px;
+    height: 20px;
+    background-color: #4295E4;
+}
+.projects__cm__container p{
+    width: 400px;
+}

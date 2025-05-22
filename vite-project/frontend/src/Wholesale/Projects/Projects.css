@@ -1,0 +1,8 @@
+.projects__section{
+    width: 100%;
+    height: fit-content;
+}
+.projects__section h1{
+    width: 700px;
+    margin-bottom: 5vh;
+}
