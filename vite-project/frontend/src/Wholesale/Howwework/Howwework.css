@@ -35,6 +35,9 @@
     top: 40px;
     left: 85%;
 }
+.number__of__step p{
+    text-align: center;
+}
 .hww__span__container{
     width: 100%;
     height: fit-content;

@@ -55,6 +55,7 @@ h1{
     background-color: #4295E4;
     color: white;
     border: 0;
+    cursor: pointer;
 }
 .thirty__three{
     color: black;

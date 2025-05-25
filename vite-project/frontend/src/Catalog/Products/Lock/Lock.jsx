@@ -239,8 +239,8 @@ export default function Lock() {
                                 </div>
                             </div>
                             <div className="price__container">
-                                <p className="thirty__three">{productData.price}</p>
-                                <p className="thirty__seven">{productData.oldprice}</p>
+                                <p className="thirty__three">{productData.price}₽</p>
+                                <p className="thirty__seven">{productData.oldprice}₽</p>
                             </div>
                             <div className="buy__container">
                                 <button onClick={() => setIsBuyModalOpen(true)}>Купить</button>

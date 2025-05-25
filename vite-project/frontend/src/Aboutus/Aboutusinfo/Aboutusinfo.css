@@ -8,7 +8,7 @@
     font-family: 'SF PRo Display';
 }
 
-.info__wrapper {
+.aboutusinfo__wrapper {
     display: flex;
     margin: 0 auto;
     justify-content: center;
@@ -16,14 +16,14 @@
     gap: 0 5vh;
 }
 
-.info {
+.aboutusinfo {
     width: 170px;
     height: 70px;
     align-items: center;
     text-align: center;
 }
 
-.info__number {
+.aboutusinfo__number {
     color: #fff;
     font-size: 60px;
     font-weight: 600;
@@ -31,7 +31,7 @@
     text-align: center;
 }
 
-.info__text {
+.aboutusinfo__text {
     color: #fff;
     font-size: 15px;
     text-align: center;

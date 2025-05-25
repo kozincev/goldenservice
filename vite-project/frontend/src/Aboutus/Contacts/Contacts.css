@@ -25,6 +25,7 @@
 .contacts__first__content button{
     background-color: #4295E4;
     color: white;
+    cursor: pointer;
 }
 .contacts__first__content p{
     width: 450px;

@@ -40,7 +40,7 @@ export default function Swiper1(){
                     <p className="thirty__three">33 000₽</p>
                     <p className="thirty__seven">37 000₽</p>
                   </div>
-                  <button><a href="">Добавить в корзину</a></button>
+                  <button>Добавить в корзину</button>
                 </div>
               </div>
             </SwiperSlide>
@@ -61,7 +61,7 @@ export default function Swiper1(){
                     <p className="thirty__three">33 000₽</p>
                     <p className="thirty__seven">37 000₽</p>
                   </div>
-                  <button><a href="">Добавить в корзину</a></button>
+                  <button>Добавить в корзину</button>
                 </div>
               </div>
             </SwiperSlide>
@@ -82,7 +82,7 @@ export default function Swiper1(){
                     <p className="thirty__three">33 000₽</p>
                     <p className="thirty__seven">37 000₽</p>
                   </div>
-                  <button><a href="">Добавить в корзину</a></button>
+                  <button>Добавить в корзину</button>
                 </div>
               </div>
             </SwiperSlide>

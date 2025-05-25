@@ -55,14 +55,14 @@ export default function NavComponent() {
                         <div className="catalog-popup-content">
                             <ul className="popup__list__general">
                                 <ul>
-                                    <li>Накладные электронные замки</li>
-                                    <li>Врезные электронные замки</li>
-                                    <li>Замки для квартиры</li>
-                                    <li>Замки для дома</li>
-                                    <li>Замки для отелей</li>
-                                    <li>Замки для офиса</li>
-                                    <li>Замки для шкафчиков</li>
-                                    <li>Замки для раздевалок</li>
+                                    <Link to="/Catalog"><li>Накладные электронные замки</li></Link>
+                                    <Link to="/Catalog"><li>Врезные электронные замки</li></Link>
+                                    <Link to="/Catalog"><li>Замки для квартиры</li></Link>
+                                    <Link to="/Catalog"><li>Замки для дома</li></Link>
+                                    <Link to="/Catalog"><li>Замки для отелей</li></Link>
+                                    <Link to="/Catalog"><li>Замки для офиса</li></Link>
+                                    <Link to="/Catalog"><li>Замки для шкафчиков</li></Link>
+                                    <Link to="/Catalog"><li>Замки для раздевалок</li></Link>
                                     <Link to="/Categories"><li><button className="popup__more">Смотреть все</button></li></Link>
                                 </ul>
                                 <ul>

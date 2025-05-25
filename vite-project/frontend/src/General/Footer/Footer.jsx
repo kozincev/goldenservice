@@ -4,6 +4,7 @@ import logofooter from "./imgs/logofooter.png"
 import vk from "./imgs/vk.png"
 import twitter from "./imgs/twitter.png"
 import facebook from "./imgs/facebook.png"
+import { Link } from "react-router-dom"
 
 
 export default function Footer() {
@@ -26,10 +27,10 @@ export default function Footer() {
                             <ul className="footer__list">
                                 <li className="footer__list__tittle">Навигация
                                     <ul className="footer__inner__list">
-                                        <li className="footer__list__item">Главная</li>
-                                        <li className="footer__list__item">Каталог</li>
-                                        <li className="footer__list__item">Оптовая продажа</li>
-                                        <li className="footer__list__item">О нас</li>
+                                        <Link to="/"><li className="footer__list__item">Главная</li></Link>
+                                        <Link to="/Catalog"><li className="footer__list__item">Каталог</li></Link>
+                                        <Link to="/Wholesale"><li className="footer__list__item">Оптовая продажа</li></Link>
+                                        <Link to="/Aboutus"><li className="footer__list__item">О нас</li></Link>
                                     </ul>
                                 </li>
                                 <li className="footer__list__tittle">Наши контакты
