@@ -8,6 +8,7 @@ import Locklink from "./Routes/Productlink/Locklink";
 import Salelink from "./Routes/Cataloglink/Salelink";
 import Makinganorederlink from "./Routes/Cataloglink/Makinganorderlink";
 import Confirmationlink from "./Routes/Cataloglink/Confirmationlink";
+import Aboutuslink from "./Routes/Aboutuslink/Aboutuslink";
 
 export default function MainRouter(){
     return(
@@ -23,7 +24,8 @@ export default function MainRouter(){
         <Route path="/Order" index element={<Makinganorederlink />}/>
         <Route path="/Wholesale" index element={<Salelink />}/>
         <Route path="/order-confirmation" index element={<Confirmationlink />}/>
-               
+        <Route path="/Aboutus" index element={<Aboutuslink />}/>
+
 
         </Routes>
         </HashRouter>

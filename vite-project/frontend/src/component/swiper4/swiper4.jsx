@@ -31,19 +31,53 @@ export default function Swiper4() {
                                 <div className="projects__cm__container"><div className="projects__cm"></div><p>Установлено 123 Вариативных замка Golden Soft для отеля</p></div>
                                 <div className="projects__cm__container"><div className="projects__cm"></div><p>Было нанесено личный брендинг на все замки</p></div>
                                 <div className="projects__cm__container"><div className="projects__cm"></div><p>Были проведны монтажные работы, также была произведена помощь в пкделючении замков к системе</p></div>
-
+                            </div>
+                            <div className="budget">
+                                <p >Бюджет - <span>$5000</span></p>
                             </div>
                         </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="projects__wrapper">
-                        <img src={projectimg1} alt="" />
+                        <div className="projects__first__content">
+                            <img src={projectimg1} alt="" />
+                        </div>
+
+                        <div className="projects__second__content">
+                            <img src={radissonlogo} alt="" />
+                            <p>Проект для гостинницы Radisson Hotels</p>
+
+                            <div className="projects__text">
+                                <div className="projects__cm__container"><div className="projects__cm"></div><p>Установлено 123 Вариативных замка Golden Soft для отеля</p></div>
+                                <div className="projects__cm__container"><div className="projects__cm"></div><p>Было нанесено личный брендинг на все замки</p></div>
+                                <div className="projects__cm__container"><div className="projects__cm"></div><p>Были проведны монтажные работы, также была произведена помощь в пкделючении замков к системе</p></div>
+                            </div>
+                            <div className="budget">
+                                <p >Бюджет - <span>$5000</span></p>
+                            </div>
+                        </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="projects__wrapper">
-                        <img src={projectimg1} alt="" />
+                        <div className="projects__first__content">
+                            <img src={projectimg1} alt="" />
+                        </div>
+
+                        <div className="projects__second__content">
+                            <img src={radissonlogo} alt="" />
+                            <p>Проект для гостинницы Radisson Hotels</p>
+
+                            <div className="projects__text">
+                                <div className="projects__cm__container"><div className="projects__cm"></div><p>Установлено 123 Вариативных замка Golden Soft для отеля</p></div>
+                                <div className="projects__cm__container"><div className="projects__cm"></div><p>Было нанесено личный брендинг на все замки</p></div>
+                                <div className="projects__cm__container"><div className="projects__cm"></div><p>Были проведны монтажные работы, также была произведена помощь в пкделючении замков к системе</p></div>
+                            </div>
+                            <div className="budget">
+                                <p >Бюджет - <span>$5000</span></p>
+                            </div>
+                        </div>
                     </div>
                 </SwiperSlide>
             </Swiper>

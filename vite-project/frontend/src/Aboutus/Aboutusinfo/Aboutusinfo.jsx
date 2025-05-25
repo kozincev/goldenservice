@@ -1,11 +1,11 @@
+import "./Aboutusinfo.css"
 import "../../main.css"
-import "./Infocompany.css"
 
 
-export default function Infocompany() {
+export default function Aboutusinfo() {
     return (
         <>
-            <section className="infocompany__section__first">
+            <section className="aboutusinfo__section">
                 <div className="container">
                     <div className="info__wrapper">
                         <div className="info">
@@ -25,7 +25,6 @@ export default function Infocompany() {
                             <p className="info__text">Лет на рынке</p>
                         </div>
                     </div>
-
                 </div>
             </section>
         </>

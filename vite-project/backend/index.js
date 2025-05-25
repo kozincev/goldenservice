@@ -10,7 +10,7 @@ const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'postgres',
-    password: '12345',
+    password: '1234',
     port: 5432,
 });
 
@@ -177,6 +177,27 @@ app.post('/api/wholesale', async (req, res) => {
          VALUES ($1,$2,$3,$4,$5,$6,$7)
          RETURNING *`,
             [customer_name, company_name, phone, product_name, quantity, logo, installation]
+        );
+
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+app.post('/api/wcyb', async (req, res) => {
+    try {
+        const {
+            wcyb_name,
+            wcyb_email
+        } = req.body;
+
+        const result = await pool.query(
+            `INSERT INTO wcyb
+          (wcyb_name, wcyb_email)
+         VALUES ($1,$2)
+         RETURNING *`,
+            [wcyb_name, wcyb_email]
         );
 
         res.status(201).json(result.rows[0]);

@@ -2,6 +2,7 @@
     width: 100%;
     height: 35vh;
     background-color: #F2F8FF;
+    margin-top: 20px;
 }
 h4{
     text-align: center;
@@ -28,13 +29,13 @@ h4{
     width: 240px;
     height: 50px;
     border: none;
+    padding: 10px;
 }
 .wcyb__form input::placeholder{
-    padding-left: 10px;
     color: #454F5B;
 }
 .wcyb__form input{
-    background: none;
+    background-color: white;
 }
 .wcyb__form button{
     background-color: #4295E4;

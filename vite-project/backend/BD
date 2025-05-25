@@ -74,3 +74,8 @@ ALTER TABLE orders
     installation  BOOLEAN         NOT NULL DEFAULT FALSE,  
     created_at    TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+create table wcyb (
+	id SERIAL primary key,
+	wcyb_name VARCHAR(50) not null,
+	wcyb_email VARCHAR(100) not NULL
+);

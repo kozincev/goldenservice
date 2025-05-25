@@ -129,7 +129,7 @@ export default function Wholesalemain() {
         }
     };
 
-    // утилита для подсветки
+
     const filled = val => val && val.toString().trim() !== '';
 
     return (

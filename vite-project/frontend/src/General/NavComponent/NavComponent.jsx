@@ -38,7 +38,7 @@ export default function NavComponent() {
 
                         <Link to="/Wholesale">Оптовая продажа</Link>
 
-                        <a href="">О нас</a>
+                       <Link to="/Aboutus">О нас</Link>
                     </div>
 
                     <div className="number__nav">
