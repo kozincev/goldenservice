@@ -58,11 +58,68 @@ app.get('/api/product/price', async (req, res) => {
         res.json({ price: priceString });
     } catch (err) {
         console.error('Ошибка в /api/product/price:', err);
-        res.status(500).json({ error: err.message });   // ← возвращаем в ответе текст ошибки
+        res.status(500).json({ error: err.message });
     }
 });
 
+app.get('/api/catalog-items', async (req, res) => {
+    try {
+        const {
+            page = 1,
+            itemsPerPage = 9,
+            priceFrom = 0,
+            priceTo = 40000,
+            categories = ''
+        } = req.query;
 
+        const offset = (page - 1) * itemsPerPage;
+        const categoryList = categories.split(',').filter(Boolean);
+        
+       
+        const conditions = ['price BETWEEN $1 AND $2'];
+        const queryParams = [priceFrom, priceTo];
+        
+        
+        if (categoryList.length > 0) {
+            const categoryConditions = categoryList
+                .map((_, i) => `title = $${i + 3}`) // Используем точное совпадение
+                .join(' OR ');
+            conditions.push(`(${categoryConditions})`);
+            categoryList.forEach(category => queryParams.push(category));
+        }
+
+        
+        const queryText = `
+            SELECT *, 
+                   (old_price IS NOT NULL AND old_price > price) as sale 
+            FROM catalog_items 
+            WHERE ${conditions.join(' AND ')}
+            ORDER BY id 
+            LIMIT $${queryParams.length + 1} 
+            OFFSET $${queryParams.length + 2}
+        `;
+
+       
+        const countQueryText = `
+            SELECT COUNT(*) 
+            FROM catalog_items 
+            WHERE ${conditions.join(' AND ')}
+        `;
+
+        const [itemsResult, countResult] = await Promise.all([
+            pool.query(queryText, [...queryParams, itemsPerPage, offset]),
+            pool.query(countQueryText, queryParams)
+        ]);
+
+        res.json({
+            items: itemsResult.rows,
+            total: parseInt(countResult.rows[0].count)
+        });
+    } catch (error) {
+        console.error('Error fetching catalog items:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 app.get('/api/product/:id', async (req, res) => {
     try {
         const { id } = req.params;

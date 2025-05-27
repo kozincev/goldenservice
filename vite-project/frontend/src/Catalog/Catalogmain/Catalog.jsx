@@ -1,19 +1,53 @@
 import "./Catalog.css"
 import "../../main.css"
 import arrow from "./imgs/arrow.png"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Slider } from '@mui/material';
 import cm from "../../General/Popularproducts/imgs/cm.png"
 import gift from "../../General/Popularproducts/imgs/gift.png"
 import { Link } from "react-router-dom"
 
-
 export default function Catalog() {
-
     const [priceFrom, setPriceFrom] = useState(0);
-    const [priceTo, setPriceTo] = useState(100);
+    const [priceTo, setPriceTo] = useState(40000);
     const [sliderValue, setSliderValue] = useState([priceFrom, priceTo]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [items, setItems] = useState([]);
+    const [totalItems, setTotalItems] = useState(0);
+    const [selectedCategories, setSelectedCategories] = useState([]);
 
+
+    const itemsPerPage = 9;
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [priceFrom, priceTo, selectedCategories]);
+
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const response = await fetch(
+                    `http://localhost:3010/api/catalog-items?page=${currentPage}&itemsPerPage=9&priceFrom=${priceFrom}&priceTo=${priceTo}&categories=${encodeURIComponent(selectedCategories.join(','))}`
+                );
+                const data = await response.json();
+                setItems(data.items);
+                setTotalItems(data.total);
+            } catch (error) {
+                console.error('Error fetching catalog items:', error);
+            }
+        };
+
+        fetchItems();
+    }, [currentPage, priceFrom, priceTo, selectedCategories]);
+
+
+    const handleCategoryChange = (categoryTitle) => {
+        setSelectedCategories(prev =>
+            prev.includes(categoryTitle)
+                ? prev.filter(c => c !== categoryTitle)
+                : [...prev, categoryTitle]
+        );
+    };
 
     const handleSliderChange = (event, newValue) => {
         setSliderValue(newValue);
@@ -33,39 +67,19 @@ export default function Catalog() {
         setSliderValue([priceFrom, value]);
     };
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 9;
-
-    const allItems = Array.from({ length: 14 }, (_, index) => ({
-        id: index + 1,  
-        sale: true,
-        inStock: true,
-        hasGift: true,
-        rating: 3,
-        reviews: 12,
-        title: "Дверной Замок Golden Soft для отеля",
-        price: 33000,
-        oldPrice: 37000,
-    }));
-    
-    const totalPages = Math.ceil(allItems.length / itemsPerPage);
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = allItems.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
 
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
     }
 
-
     return (
         <>
             <section className="catalog__section">
                 <div className="container">
                     <p className="text__navigation">Главная / <span>Каталог</span></p>
-                    <h5>Накладные электронные замки <span className="eight__hungred__span">(854)</span></h5>
+                    <h5>Накладные электронные замки <span className="eight__hungred__span">({totalItems})</span></h5>
                     <div className="catalog__top__btns">
                         <button className="drop__filters">Сбросить фильтры</button>
                         <button className="sortirovka">Популярности <img src={arrow} alt="" /></button>
@@ -78,8 +92,8 @@ export default function Catalog() {
                                     <label htmlFor="">Цена</label>
                                     <button><img src={arrow} alt="" /></button>
                                 </div>
-                                <div className="categoryleftbar-inner-sorting">
-                                    <div className="categoryleftbar-inner-sorting-price">
+                                <div className="categoryleftbar-inner-sorting" >
+                                    <div className="categoryleftbar-inner-sorting-price" >
                                         <div className='categoryleftbar-inner-sorting-input'>
                                             <input
                                                 type="number"
@@ -98,8 +112,8 @@ export default function Catalog() {
                                             value={sliderValue}
                                             onChange={handleSliderChange}
                                             valueLabelDisplay="auto"
-                                            min={7900}
-                                            max={180000}
+                                            min={0}
+                                            max={40000}
                                         />
                                     </div>
                                 </div>
@@ -112,22 +126,46 @@ export default function Catalog() {
                                     </div>
                                     <div className="second__form__checkbox__contaier">
                                         <ul className="checkbox__list">
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox" /><label htmlFor="customCheckbox">Электронные кодовые замки<span>(65)</span></label></li>
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox2" /><label htmlFor="customCheckbox2">Биометрические замки<span>(15)</span></label></li>
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox3" /><label htmlFor="customCheckbox3">Замок с отппечатком<span>(28)</span></label></li>
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox4" /><label htmlFor="customCheckbox4">Замок с бесконтактной картой<span>(45)</span></label></li>
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox5" /><label htmlFor="customCheckbox5">Программируемые замки<span>(8)</span></label></li>
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox6" /><label htmlFor="customCheckbox6">Замки на батарейках<span>(4)</span></label></li>
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox7" /><label htmlFor="customCheckbox7">Замки с удаленным доступом<span>(31)</span></label></li>
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox8" /><label htmlFor="customCheckbox8">Bluetooth замки<span>(6)</span></label></li>
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox9" /><label htmlFor="customCheckbox9">Электронные замки для квартиры<span>(17)</span></label></li>
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox10" /><label htmlFor="customCheckbox10">Замки для стеклянных дверей<span>(24)</span></label></li>
-                                            <li className="checkbox__li"><input type="checkbox" id="customCheckbox11" /><label htmlFor="customCheckbox11">Электронные цилиндры<span>(3)</span></label></li>
+                                            <li className="checkbox__li">
+                                                <input
+                                                    type="checkbox"
+                                                    id="customCheckbox"
+                                                    checked={selectedCategories.includes('Дверной Замок Golden Soft для офиса')}
+                                                    onChange={() => handleCategoryChange('Дверной Замок Golden Soft для офиса')}
+                                                />
+                                                <label htmlFor="customCheckbox">Дверной Замок Golden Soft для офиса<span>(5)</span></label>
+                                            </li>
+                                            <li className="checkbox__li">
+                                                <input
+                                                    type="checkbox"
+                                                    id="customCheckbox2"
+                                                    checked={selectedCategories.includes('Дверной Замок Golden Soft для отеля')}
+                                                    onChange={() => handleCategoryChange('Дверной Замок Golden Soft для отеля')}
+                                                />
+                                                <label htmlFor="customCheckbox2">Дверной Замок Golden Soft для отеля<span>(3)</span></label>
+                                            </li>
+                                            <li className="checkbox__li">
+                                                <input
+                                                    type="checkbox"
+                                                    id="customCheckbox3"
+                                                    checked={selectedCategories.includes('Дверной Замок Golden Soft для комнаты')}
+                                                    onChange={() => handleCategoryChange('Дверной Замок Golden Soft для комнаты')}
+                                                />
+                                                <label htmlFor="customCheckbox3">Дверной Замок Golden Soft для комнаты<span>(3)</span></label>
+                                            </li>
+                                            <li className="checkbox__li">
+                                                <input
+                                                    type="checkbox"
+                                                    id="customCheckbox4"
+                                                    checked={selectedCategories.includes('Дверной Замок Golden Soft для бани')}
+                                                    onChange={() => handleCategoryChange('Дверной Замок Golden Soft для бани')}
+                                                />
+                                                <label htmlFor="customCheckbox4">Дверной Замок Golden Soft для бани<span>(3)</span></label>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div className="bottom__first__line"></div>
                                 </form>
-
                                 <form action="" className="second__form">
                                     <div className="form__middle__tittle">
                                         <label>Цвет</label>
@@ -152,23 +190,24 @@ export default function Catalog() {
                             </form>
                         </div>
 
-
                         <div className="catalog__items__wrapper">
                             <div className="catalog__items__container">
-                                {currentItems.map((item, index) => (
+                                {items.map((item) => (
                                     <Link
                                         to={`/Lock/${item.id}`}
-                                        key={item.id}  
+                                        key={item.id}
                                         className="card-link-wrapper"
                                     >
-                                        <div className={`pp__card${(index % 4) + 1}`}>
+                                        <div className="pp__card"
+                                            data-card-type={item.card_type}
+                                            key={item.id}>
                                             {item.sale && <p className="sale">SALE</p>}
                                             <div className="card__top">
                                                 <div className="card__top__first">
                                                     <img src={cm} alt="В наличии" />
-                                                    <p>В наличии</p>
+                                                    <p>{item.in_stock ? 'В наличии' : 'Нет в наличии'}</p>
                                                 </div>
-                                                {item.hasGift && (
+                                                {item.has_gift && (
                                                     <div className="card__top__second">
                                                         <img src={gift} alt="Подарок" />
                                                         <p>Подарок</p>
@@ -186,14 +225,16 @@ export default function Catalog() {
                                                         ))}
                                                     </ul>
                                                     <ul className="rw">
-                                                        <li>({item.reviews}) отзывов</li>
+                                                        <li>({item.reviews_count}) отзывов</li>
                                                     </ul>
                                                 </ul>
                                                 <p className="card__info">{item.title}</p>
                                             </div>
                                             <div className="price__container">
                                                 <p className="thirty__three">{item.price.toLocaleString()}₽</p>
-                                                <p className="thirty__seven">{item.oldPrice.toLocaleString()}₽</p>
+                                                {item.sale && (
+                                                    <p className="thirty__seven">{item.old_price.toLocaleString()}₽</p>
+                                                )}
                                             </div>
                                         </div>
                                     </Link>
@@ -229,7 +270,7 @@ export default function Catalog() {
                         </div>
                     </div>
                 </div>
-            </section >
+            </section>
         </>
     )
-}
+};

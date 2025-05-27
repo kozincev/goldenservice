@@ -25,10 +25,9 @@
   }
 
 
-.pp__card1 {
+.pp__card {
     width: 400px;
     height: 640px;
-    background-image: url(../../General/Popularproducts/imgs/card1.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-color: rgb(255, 255, 255);
@@ -38,44 +37,11 @@
     cursor: pointer;
 }
 
-.pp__card2 {
-    width: 400px;
-    height: 640px;
-    background-image: url(../../General/Popularproducts/imgs/card2.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 80px;
-    cursor: pointer;
-}
 
-.pp__card3 {
-    width: 400px;
-    height: 640px;
-    background-image: url(../../General/Popularproducts/imgs/card3.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 80px;
-    cursor: pointer;
-}
-
-.pp__card4 {
-    width: 400px;
-    height: 640px;
-    background-image: url(../../General/Popularproducts/imgs/card4.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 80px;
-    cursor: pointer;
-}
+.pp__card1[data-card-type="1"] { background-image: url(../../General/Popularproducts/imgs/card1.png); }
+.pp__card2[data-card-type="2"] { background-image: url(../../General/Popularproducts/imgs/card2.png); }
+.pp__card3[data-card-type="3"] { background-image: url(../../General/Popularproducts/imgs/card3.png); }
+.pp__card4[data-card-type="4"] { background-image: url(../../General/Popularproducts/imgs/card4.png); }
 
 .sale {
     font-weight: 600;

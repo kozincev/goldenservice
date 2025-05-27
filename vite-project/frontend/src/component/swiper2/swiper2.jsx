@@ -37,6 +37,12 @@ export default function Swiper2() {
     for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
     }
+    const cardImages = {
+        1: 'url(../../General/Popularproducts/imgs/card1.png)',
+        2: 'url(../../General/Popularproducts/imgs/card2.png)',
+        3: 'url(../../General/Popularproducts/imgs/card3.png)',
+        4: 'url(../../General/Popularproducts/imgs/card4.png)'
+    };
     return (
         <>
             <Swiper navigation={true} modules={[Navigation]} className="mySwiperr">
@@ -50,7 +56,11 @@ export default function Swiper2() {
                                     key={item.id}
                                     className="card-link-wrapper"
                                 >
-                                    <div className={`pp__card${(index % 4) + 1}`}>
+                                    <div
+                                        className="pp__card"
+                                        data-card-type={(index % 4) + 1}
+                                        key={item.id}
+                                    >
                                         {item.sale && <p className="sale">SALE</p>}
                                         <div className="card__top">
                                             <div className="card__top__first">
