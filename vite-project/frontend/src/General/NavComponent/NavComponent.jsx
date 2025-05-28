@@ -12,10 +12,15 @@ import { Link } from "react-router-dom"
 
 export default function NavComponent() {
     const [isCatalogOpen, setIsCatalogOpen] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
     const toggleCatalog = () => {
         setIsCatalogOpen(!isCatalogOpen)
-    }
+    };
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
     return (
         <>
             <nav>
@@ -24,10 +29,13 @@ export default function NavComponent() {
                     <a href="">Обратный звонок</a>
                 </div>
                 <div className="bottom__nav">
-                <Link to="/"><img src={logo} alt="" /></Link>
+                    <button className="mobile-menu-toggle" onClick={toggleMenu}>
+                        ☰
+                    </button>
+                    <Link to="/"><img src={logo} alt="" /></Link>
 
                     <div className="nav__links">
-                    <Link to="/">Главная</Link>
+                        <Link to="/">Главная</Link>
                         <div className="catalog__nav" onClick={(e) => {
                             e.preventDefault()
                             toggleCatalog()
@@ -38,7 +46,7 @@ export default function NavComponent() {
 
                         <Link to="/Wholesale">Оптовая продажа</Link>
 
-                       <Link to="/Aboutus">О нас</Link>
+                        <Link to="/Aboutus">О нас</Link>
                     </div>
 
                     <div className="number__nav">

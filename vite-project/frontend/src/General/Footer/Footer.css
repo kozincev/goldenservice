@@ -75,3 +75,64 @@ footer p{
     font-weight: normal;
     font-size: 15px;
 }
+
+
+@media (max-width: 768px) {
+    footer{
+        width: 100%;
+        height: fit-content;
+    }
+    .footer__wrapper {
+        width: 100%;
+        flex-direction: column-reverse;
+    }
+    .footer__nav .footer__list {
+        gap: 20px;
+        padding: 20px 10px;
+    }
+
+    .logos__wrapper {
+        margin-top: 3vh;
+        gap: 15px;
+    }
+
+    .footer__list__tittle {
+        font-size: 12px;
+        height: fit-content;
+    }
+
+    .footer__list__item {
+        font-size: 10px;
+        line-height: 22px;
+    }
+
+    .footer__line {
+       display: none;
+    }
+
+    footer p {
+        padding: 10px 15px;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer__logos {
+        height: fit-content;
+        padding: 15px 10px;
+    }
+
+    .logos__list {
+        gap: 15px;
+    }
+
+    .footer__nav .footer__list {
+        grid-template-columns: 1fr;
+        text-align: left;
+        padding: 15px;
+    }
+
+    .footer__list__group {
+        margin-bottom: 15px;
+    }
+}

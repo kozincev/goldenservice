@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import headerimg1 from "../../General/Header/imgs/headerimg1.png"
+import { Link } from 'react-router-dom'
 // import headerimg2 from "../../General/Header/imgs/headerimg2.png"
 // import headerimg3 from "../../General/Header/imgs/headerimg3.png"
 
@@ -40,7 +41,7 @@ export default function Swiper1(){
                     <p className="thirty__three">33 000₽</p>
                     <p className="thirty__seven">37 000₽</p>
                   </div>
-                  <button>Добавить в корзину</button>
+                  <Link to="/Lock/3"><button>Добавить в корзину</button></Link>
                 </div>
               </div>
             </SwiperSlide>
@@ -61,7 +62,7 @@ export default function Swiper1(){
                     <p className="thirty__three">33 000₽</p>
                     <p className="thirty__seven">37 000₽</p>
                   </div>
-                  <button>Добавить в корзину</button>
+                  <Link to="/Lock/3"><button>Добавить в корзину</button></Link>
                 </div>
               </div>
             </SwiperSlide>
@@ -82,7 +83,7 @@ export default function Swiper1(){
                     <p className="thirty__three">33 000₽</p>
                     <p className="thirty__seven">37 000₽</p>
                   </div>
-                  <button>Добавить в корзину</button>
+                  <Link to="/Lock/3"><button>Добавить в корзину</button></Link>
                 </div>
               </div>
             </SwiperSlide>

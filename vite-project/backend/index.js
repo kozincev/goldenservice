@@ -64,42 +64,34 @@ app.get('/api/product/price', async (req, res) => {
 
 app.get('/api/catalog-items', async (req, res) => {
     try {
-        const {
-            page = 1,
-            itemsPerPage = 9,
-            priceFrom = 0,
-            priceTo = 40000,
-            categories = ''
-        } = req.query;
+        // Преобразуем параметры в числа
+        const page = parseInt(req.query.page) || 1;
+        const itemsPerPage = parseInt(req.query.itemsPerPage) || 9;
+        const priceFrom = parseInt(req.query.priceFrom) || 0;
+        const priceTo = parseInt(req.query.priceTo) || 40000;
 
         const offset = (page - 1) * itemsPerPage;
+        const categories = req.query.categories || '';
         const categoryList = categories.split(',').filter(Boolean);
-        
-       
+
         const conditions = ['price BETWEEN $1 AND $2'];
         const queryParams = [priceFrom, priceTo];
-        
-        
+
         if (categoryList.length > 0) {
-            const categoryConditions = categoryList
-                .map((_, i) => `title = $${i + 3}`) // Используем точное совпадение
-                .join(' OR ');
-            conditions.push(`(${categoryConditions})`);
-            categoryList.forEach(category => queryParams.push(category));
+            conditions.push(`title = ANY($${queryParams.length + 1})`);
+            queryParams.push(categoryList);
         }
 
-        
         const queryText = `
             SELECT *, 
                    (old_price IS NOT NULL AND old_price > price) as sale 
             FROM catalog_items 
             WHERE ${conditions.join(' AND ')}
             ORDER BY id 
-            LIMIT $${queryParams.length + 1} 
+            LIMIT $${queryParams.length + 1}
             OFFSET $${queryParams.length + 2}
         `;
 
-       
         const countQueryText = `
             SELECT COUNT(*) 
             FROM catalog_items 

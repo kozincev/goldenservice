@@ -3,18 +3,21 @@
     height: 80vh;
     text-align: center;
 }
+
 .swiper-button-next::after{
     position: absolute;
     bottom: -36vh;
     right: 60vh;
     color: black;
 }
+
 .swiper-button-prev::after{
     position: absolute;
     bottom: -36vh;
     left: 60vh;
     color: black;
 }
+
 .swiper__wrapper{
     width: 100%;
     height: inherit;
@@ -24,6 +27,7 @@
     align-items: center;
     gap: 0 20vh;
 }
+
 .swiper__content{
     width: 370px;
     height: 500px;
@@ -34,21 +38,25 @@
     gap: 2vh 0;
     color: #454F5B;
 }
+
 h1{
     width: 420px;
     color: black;
     font-size: 44px;
     font-weight: 600;
 }
+
 .price__container{
     display: flex;
     gap: 0 3vh;
     font-size: 24px;
 }
+
 .thirty__seven{
     text-decoration: line-through;
     color: #A4A4A4;
 }
+
 .swiper__content button{
     width: 200px;
     height: 50px;
@@ -57,12 +65,78 @@ h1{
     border: 0;
     cursor: pointer;
 }
+
 .thirty__three{
     color: black;
 }
+
 .last__p{
     width: 340px;
 }
+
 .price{
     font-size: 15px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .swiper {
+        height: 50vh;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        display: none;
+    }
+
+    .swiper__wrapper {
+        flex-direction: column;
+        gap: 20px 0;
+        padding: 20px;
+        height: auto;
+    }
+
+    .swiper__img {
+        width: 100%;
+        text-align: center;
+    }
+
+    .swiper__img img {
+        max-width: 70%;
+        height: auto;
+    }
+
+    .swiper__content {
+        width: 100%;
+        height: auto;
+        font-size: 16px;
+        padding: 0 15px;
+    }
+    #root > header > div > div > div.swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal{
+        display: none;
+    }
+    h1 {
+        width: 100%;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .swiper__content p {
+        text-align: center;
+        width: 100% !important;
+    }
+
+    .price__container {
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .swiper__content button {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .last__p {
+        margin-bottom: 15px;
+    }
 }
