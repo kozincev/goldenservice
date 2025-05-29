@@ -300,8 +300,9 @@ h5 {
 .catalog__items__container {
     display: grid;
     grid-template-columns: repeat(3, 2fr);
-    gap: 30px;
+    gap: 30px 100px;
     margin-bottom: 40px;
+    margin: 0 auto;
 }
 
 /* .pp__card1,
@@ -336,7 +337,7 @@ h5 {
     display: flex;
     justify-content: center;
     gap: 10px;
-    padding: 20px 0;
+    padding: 40px 0;
     margin: 0 auto;
 }
 

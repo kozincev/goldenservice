@@ -15,8 +15,6 @@ export default function Catalog() {
     const [items, setItems] = useState([]);
     const [totalItems, setTotalItems] = useState(0);
     const [selectedCategories, setSelectedCategories] = useState([]);
-
-
     const itemsPerPage = 9;
 
     useEffect(() => {
@@ -240,7 +238,11 @@ export default function Catalog() {
                                     </Link>
                                 ))}
                             </div>
-                            {totalPages > 1 && (
+                           
+                        </div>
+                        
+                    </div>
+                     {totalPages > 1 && (
                                 <div className="pagination">
                                     <button
                                         onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
@@ -267,8 +269,6 @@ export default function Catalog() {
                                     </button>
                                 </div>
                             )}
-                        </div>
-                    </div>
                 </div>
             </section>
         </>

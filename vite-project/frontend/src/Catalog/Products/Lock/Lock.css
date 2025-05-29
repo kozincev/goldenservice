@@ -509,19 +509,23 @@
 }
 
 .reviews__wrapper {
-    width: 75%;
+    width: 100%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 20px 0;
 }
-
+.goldenlock__section h3{
+    width: 400px;
+}
 .reviews__first__content {
     width: 1000px;
     height: 200px;
     border: 1px #C4CDD5 solid;
 }
-
+.reviews__count{
+   text-align: center; 
+}
 .reviews__first__content__top__inner {
     width: 100%;
     height: 50px;

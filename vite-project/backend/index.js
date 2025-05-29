@@ -36,6 +36,76 @@ app.get('/api/models', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+app.post('/api/reviews', async (req, res) => {
+    let { product_id, author_name, email, rating, comment } = req.body;
+
+
+    product_id = Number(product_id);
+
+    if (isNaN(product_id) || !author_name || !rating || !comment) {
+        return res.status(400).json({ error: 'Missing required fields or invalid types' });
+    }
+
+
+    try {
+        const result = await pool.query(
+            `INSERT INTO reviews (product_id, author_name, email, rating, comment)
+             VALUES ($1, $2, $3, $4, $5)
+             RETURNING *`,
+            [product_id, author_name, email, rating, comment]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+app.get('/api/reviews/:productId', async (req, res) => {
+    const { productId } = req.params;
+    console.log(`Fetching reviews for product ID: ${productId}`);
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 3;
+
+    if (isNaN(productId)) {
+        return res.status(400).json({ error: 'Invalid product ID' });
+    }
+
+    try {
+        const offset = (page - 1) * limit;
+
+        const reviewsQuery = await pool.query(
+            `SELECT id, author_name, email, rating, comment, created_at 
+             FROM reviews 
+             WHERE product_id = $1
+             ORDER BY created_at DESC
+             LIMIT $2 OFFSET $3`,
+            [Number(productId), limit, offset]
+        );
+
+        const countQuery = await pool.query(
+            `SELECT COUNT(*) as total
+             FROM reviews 
+             WHERE product_id = $1`,
+            [Number(productId)]
+        );
+
+        const total = parseInt(countQuery.rows[0].total, 10);
+
+        res.json({
+            reviews: reviewsQuery.rows,
+            total: total,
+            page: page,
+            totalPages: Math.ceil(total / limit)
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 app.get('/api/product/price', async (req, res) => {
     const model = req.query.model;
     if (!model) {
@@ -64,7 +134,7 @@ app.get('/api/product/price', async (req, res) => {
 
 app.get('/api/catalog-items', async (req, res) => {
     try {
-        // Преобразуем параметры в числа
+
         const page = parseInt(req.query.page) || 1;
         const itemsPerPage = parseInt(req.query.itemsPerPage) || 9;
         const priceFrom = parseInt(req.query.priceFrom) || 0;
@@ -255,6 +325,7 @@ app.post('/api/wcyb', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Server starting on port ${PORT}`);

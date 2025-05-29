@@ -81,7 +81,7 @@ h1{
 /* Mobile Styles */
 @media (max-width: 768px) {
     .swiper {
-        height: 50vh;
+        height: fit-content;
     }
 
     .swiper-button-next::after,

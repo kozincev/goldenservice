@@ -23,7 +23,30 @@
     gap: 30px;
     margin-top: 6vh;
 }
-
+.card__top__first{
+    display: flex;
+    gap: 0 10px;
+    width: 120px;
+    height: 30px;
+    align-items: center;
+    text-align: center;
+    padding: 10px 10px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+.card__top__second{
+    display: flex;
+    gap: 0 10px;
+    width: 120px;
+    height: 30px;
+    align-items: center;
+    text-align: center;
+    padding: 10px 10px;
+    background-color: white;
+}
+.sale{
+    margin-left: 85%;
+}
 .pp__card {
     width: 400px;
     height: 200px;

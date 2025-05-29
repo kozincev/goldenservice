@@ -14,9 +14,11 @@ import thirdcolor from "./imgs/thirdcolor.png";
 import repost from "./imgs/repost.png";
 import comment from "./imgs/comment.png";
 import more from "./imgs/more.png";
+import rlcyellowstar from "./imgs/rlcyellowstar.png";
 import rlcwhitestar from "./imgs/rlcwhitestar.png";
 import deletes from "./imgs/deletes.png";
 import { Link, useNavigate } from 'react-router-dom';
+import formatReviewsCount from "../../../component/Reviewscount/Reviewscount"
 
 
 
@@ -35,6 +37,170 @@ export default function Lock() {
     const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
+
+
+    
+    const [reviews, setReviews] = useState([]);
+    const [rating, setRating] = useState(0);
+    const [reviewsPage, setReviewsPage] = useState(1);
+    const [reviewsTotal, setReviewsTotal] = useState(0);
+    const [reviewsTotalPages, setReviewsTotalPages] = useState(1);
+    const [loadingReviews, setLoadingReviews] = useState(false);
+    const [rlcyellowstar, setRlcYellowStar] = useState(null);
+    const [rlcwhitestar, setRlcWhiteStar] = useState(null);
+
+    useEffect(() => {
+        Promise.all([
+            import('./imgs/rlcyellowstar.png'),
+            import('./imgs/rlcwhitestar.png')
+        ]).then(([yellow, white]) => {
+            setRlcYellowStar(yellow.default);
+            setRlcWhiteStar(white.default);
+        });
+    }, []);
+
+
+    const loadReviews = async (page = 1) => {
+        setLoadingReviews(true);
+        try {
+            const numericId = String(id).replace(/\D/g, '');
+            if (!numericId) return;
+
+            const response = await fetch(
+                `http://localhost:3010/api/reviews/${numericId}?page=${page}&limit=3`
+            );
+
+            if (!response.ok) {
+                throw new Error('Ошибка загрузки отзывов');
+            }
+
+            const data = await response.json();
+
+
+            if (!data || !Array.isArray(data.reviews)) {
+                throw new Error('Неверный формат ответа сервера');
+            }
+
+            if (page === 1) {
+                setReviews(data.reviews);
+            } else {
+                setReviews(prev => [...prev, ...data.reviews]);
+            }
+
+            setReviewsTotal(data.total);
+            setReviewsTotalPages(data.totalPages);
+            setReviewsPage(page);
+        } catch (error) {
+            console.error('Ошибка загрузки отзывов:', error);
+            setReviews([]);
+        } finally {
+            setLoadingReviews(false);
+        }
+    };
+
+
+    useEffect(() => {
+        if (activeTab === 'reviews' && id) {
+            loadReviews();
+        }
+    }, [activeTab, id]);
+
+
+    const handleLoadMoreReviews = () => {
+        if (reviewsPage < reviewsTotalPages) {
+            loadReviews(reviewsPage + 1);
+        }
+    };
+
+
+
+
+
+
+    const handleSubmitReview = async (e) => {
+        e.preventDefault();
+        if (rating === 0) {
+            alert("Пожалуйста, выберите рейтинг");
+            return;
+        }
+
+        const formData = {
+            product_id: id,
+            author_name: e.target.author_name.value,
+            email: e.target.email.value,
+            rating: rating,
+            comment: e.target.comment.value
+        };
+        try {
+            const response = await fetch('http://localhost:3010/api/reviews', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка сервера');
+            }
+
+            const newReview = await response.json();
+            setReviews([newReview, ...reviews]);
+            e.target.reset();
+            setRating(0);
+
+
+            document.querySelectorAll('.rlc__form__stars__list li').forEach(li => {
+                li.querySelector('img').src = rlcwhitestar;
+            });
+            loadReviews(1);
+        } catch (error) {
+            console.error('Ошибка при отправке отзыва:', error);
+            alert('Не удалось отправить отзыв');
+        }
+    };
+
+
+    useEffect(() => {
+        if (activeTab === 'reviews' && id) {
+            const numericId = id.replace(/\D/g, '');
+            fetch(`http://localhost:3010/api/reviews/${numericId}`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Ошибка загрузки отзывов');
+                    return response.json();
+                })
+                .then(data => setReviews(data))
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert('Не удалось загрузить отзывы');
+                });
+        }
+    }, [activeTab, id]);
+
+
+    const RatingStars = () => {
+        if (!rlcyellowstar || !rlcwhitestar) return null;
+
+        const handleStarClick = (index) => {
+            setRating(index + 1);
+            const stars = document.querySelectorAll('.rlc__form__stars__list li');
+            stars.forEach((star, i) => {
+                star.querySelector('img').src = i <= index ? rlcyellowstar : rlcwhitestar;
+            });
+        };
+
+        return (
+            <ul className="rlc__form__stars__list">
+                {[...Array(5)].map((_, index) => (
+                    <li
+                        key={index}
+                        className="rlc__star"
+                        onClick={() => handleStarClick(index)}
+                    >
+                        <img src={rlcwhitestar} alt="" />
+                    </li>
+                ))}
+            </ul>
+        );
+    };
 
 
 
@@ -101,6 +267,13 @@ export default function Lock() {
             .catch(error => console.error('Fetch error:', error));
     }, [id]);
 
+
+
+
+    const formData = {
+        product_id: Number(id.replace(/\D/g, '')),
+
+    };
 
 
     return (
@@ -472,133 +645,107 @@ export default function Lock() {
                             ))}
                         </div>
                     )}
-
                     {activeTab === 'reviews' && (
                         <div className="reviews__content">
-                            <div className="reviews__wrapper">
-                                <div className="reviews__first__content">
-                                    <div className="reviews__first__content__top__inner">
-                                        <ul className="rfct__inner__list">
-                                            <li>Андрей Попенко</li>
-                                            <li>20 августа, 2021</li>
-                                            <li className="rw__stars__list__main">
-                                                <ul className="rw__stars__list">
-                                                    <li className="yellow__star"><img src={yellowstar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={yellowstar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={yellowstar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={whitestar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={whitestar} alt="" /></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
+                            <div className="reviews__header">
+                                <h3>Отзывы о товаре</h3>
+                                {reviewsTotal > 0 && (
+                                    <div className="reviews__count">
+                                        {reviewsTotal} {formatReviewsCount(reviewsTotal)}
                                     </div>
-                                    <div className="review__text__container">
-                                        <p>Et feugiat eu scelerisque nulla mattis. At et enim dui mauris.
-                                            Nisi, hendrerit dictum consequat tristique sed. Est ultrices etiam in lorem nulla a.Et feugiat eu scelerisque nulla mattis. At et enim dui mauris. Nisi</p>
-                                    </div>
-                                    <div className="rw__inner__bottom">
-                                        <div className="rw__inner__bottom__first">
-                                            <img src={repost} alt="" />
-                                            <p>Ответить</p>
-                                        </div>
-                                        <div className="rw__inner__bottom__second">
-                                            <img src={comment} alt="" />
-                                            <p>1 комментарий</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="reviews__first__content">
-                                    <div className="reviews__first__content__top__inner">
-                                        <ul className="rfct__inner__list">
-                                            <li>Андрей Попенко</li>
-                                            <li>20 августа, 2021</li>
-                                            <li className="rw__stars__list__main">
-                                                <ul className="rw__stars__list">
-                                                    <li className="yellow__star"><img src={yellowstar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={yellowstar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={yellowstar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={whitestar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={whitestar} alt="" /></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="review__text__container">
-                                        <p>Et feugiat eu scelerisque nulla mattis. At et enim dui mauris.
-                                            Nisi, hendrerit dictum consequat tristique sed. Est ultrices etiam in lorem nulla a.Et feugiat eu scelerisque nulla mattis. At et enim dui mauris. Nisi</p>
-                                    </div>
-                                    <div className="rw__inner__bottom">
-                                        <div className="rw__inner__bottom__first">
-                                            <img src={repost} alt="" />
-                                            <p>Ответить</p>
-                                        </div>
-                                        <div className="rw__inner__bottom__second">
-                                            <img src={comment} alt="" />
-                                            <p>1 комментарий</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="reviews__first__content">
-                                    <div className="reviews__first__content__top__inner">
-                                        <ul className="rfct__inner__list">
-                                            <li>Андрей Попенко</li>
-                                            <li>20 августа, 2021</li>
-                                            <li className="rw__stars__list__main">
-                                                <ul className="rw__stars__list">
-                                                    <li className="yellow__star"><img src={yellowstar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={yellowstar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={yellowstar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={whitestar} alt="" /></li>
-                                                    <li className="yellow__star"><img src={whitestar} alt="" /></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="review__text__container">
-                                        <p>Et feugiat eu scelerisque nulla mattis. At et enim dui mauris.
-                                            Nisi, hendrerit dictum consequat tristique sed. Est ultrices etiam in lorem nulla a.Et feugiat eu scelerisque nulla mattis. At et enim dui mauris. Nisi</p>
-                                    </div>
-                                    <div className="rw__inner__bottom">
-                                        <div className="rw__inner__bottom__first">
-                                            <img src={repost} alt="" />
-                                            <p>Ответить</p>
-                                        </div>
-                                        <div className="rw__inner__bottom__second">
-                                            <img src={comment} alt="" />
-                                            <p>1 комментарий</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="see__more">
-                                    <img src={more} alt="" /><span>Показать еще</span>
-                                </div>
+                                )}
                             </div>
-
+                            <div className="reviews__wrapper">
+                                {Array.isArray(reviews) && reviews.map(review => (
+                                    <div className="reviews__first__content" key={review.id}>
+                                        <div className="reviews__first__content__top__inner">
+                                            <ul className="rfct__inner__list">
+                                                <li>{review.author_name}</li>
+                                                <li>
+                                                    {new Date(review.created_at).toLocaleDateString('ru-RU', {
+                                                        day: 'numeric',
+                                                        month: 'long',
+                                                        year: 'numeric'
+                                                    })}
+                                                </li>
+                                                <li className="rw__stars__list__main">
+                                                    <ul className="rw__stars__list">
+                                                        {[...Array(5)].map((_, i) => (
+                                                            <li key={i} className={i < review.rating ? "yellow__star" : "white__star"}>
+                                                                <img src={i < review.rating ? yellowstar : whitestar} alt="" />
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div className="review__text__container">
+                                            <p>{review.comment}</p>
+                                        </div>
+                                        <div className="rw__inner__bottom">
+                                            <div className="rw__inner__bottom__first">
+                                                <img src={repost} alt="" />
+                                                <p>Ответить</p>
+                                            </div>
+                                            <div className="rw__inner__bottom__second">
+                                                <img src={comment} alt="" />
+                                                <p>1 комментарий</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                                {reviewsTotal > 3 && reviewsPage < reviewsTotalPages && (
+                                    <div
+                                        className="see__more"
+                                        onClick={handleLoadMoreReviews}
+                                        style={{ cursor: 'pointer' }}
+                                    >
+                                        <img src={more} alt="" />
+                                        <span>
+                                            {loadingReviews ? 'Загрузка...' : 'Показать еще'}
+                                        </span>
+                                    </div>
+                                )}
+                            </div>
+                            {reviews.length === 0 && !loadingReviews && (
+                                <div className="no-reviews">
+                                    <p>Пока нет отзывов о этом товаре. Будьте первым!</p>
+                                </div>
+                            )}
                             <div className="reviews__last__content">
-                                <form action="" className="rlc__form">
-                                    <label htmlFor="">Ваша оценка
-                                        <ul className="rlc__form__stars__list">
-                                            <li className="rlc__white__star"><img src={rlcwhitestar} alt="" /></li>
-                                            <li className="rlc__white__star"><img src={rlcwhitestar} alt="" /></li>
-                                            <li className="rlc__white__star"><img src={rlcwhitestar} alt="" /></li>
-                                            <li className="rlc__white__star"><img src={rlcwhitestar} alt="" /></li>
-                                            <li className="rlc__white__star"><img src={rlcwhitestar} alt="" /></li>
-                                        </ul>
+                                <form className="rlc__form" onSubmit={handleSubmitReview}>
+                                    <label htmlFor="rating">Ваша оценка
+                                        <RatingStars />
                                     </label>
-                                    <label htmlFor="">Ваше имя
-                                        <input type="text" name="" id="" placeholder="Введите Ваше имя" />
+                                    <label>
+                                        Ваше имя
+                                        <input
+                                            type="text"
+                                            name="author_name"
+                                            placeholder="Введите Ваше имя"
+                                            required
+                                        />
                                     </label>
-                                    <label htmlFor="">Ваше Email
-                                        <input type="text" name="" id="" placeholder="Введите Ваш email" />
+                                    <label>
+                                        Ваше Email
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            placeholder="Введите Ваш email"
+                                        />
                                     </label>
-                                    <label htmlFor="">Ваш комментарий
-                                        <textarea name="" id="" placeholder="Введите Ваш комментарий"></textarea>
+                                    <label>
+                                        Ваш комментарий
+                                        <textarea
+                                            name="comment"
+                                            placeholder="Введите Ваш комментарий"
+                                            required
+                                        />
                                     </label>
-                                    <button>Оставить отзыв</button>
+                                    <button type="submit">Оставить отзыв</button>
                                 </form>
                             </div>
                         </div>
-
                     )}
 
                 </div>

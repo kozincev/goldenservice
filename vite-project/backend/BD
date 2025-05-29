@@ -124,3 +124,14 @@ UPDATE catalog_items SET card_type = 2 WHERE id = 11;
 UPDATE catalog_items SET card_type = 3 WHERE id = 12;
 UPDATE catalog_items SET card_type = 4 WHERE id = 13;
 UPDATE catalog_items SET card_type = 1 WHERE id = 14;
+
+
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    product_id INTEGER NOT NULL REFERENCES product(id),
+    author_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    comment TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

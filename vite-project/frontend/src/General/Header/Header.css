@@ -5,6 +5,7 @@ header {
 
 @media (max-width: 768px) {
     header {
-        height: 50vh;
+    
+        height: fit-content;
     }
 }
